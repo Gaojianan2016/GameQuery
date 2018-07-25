@@ -15,13 +15,19 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar">
-        <activity android:name=".ui.MainActivity">
+
+        <!--启动页-->
+        <activity android:name=".ui.splash.SplashActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <!--首页-->
+        <activity android:name=".ui.MainActivity" />
+
     </application>
 
 </manifest>
