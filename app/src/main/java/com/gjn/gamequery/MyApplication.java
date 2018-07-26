@@ -1,6 +1,11 @@
 package com.gjn.gamequery;
 
 import android.app.Application;
+import android.content.Context;
+import android.support.multidex.MultiDex;
+
+import com.tencent.bugly.Bugly;
+import com.tencent.bugly.beta.Beta;
 
 /**
  * @author gjn
@@ -13,5 +18,15 @@ public class MyApplication extends Application {
     public void onCreate() {
         super.onCreate();
 
+        Bugly.init(getApplicationContext(), "9eeaeaf8a6", BuildConfig.DEBUG);
+    }
+
+    @Override
+    protected void attachBaseContext(Context base) {
+        super.attachBaseContext(base);
+        // you must install multiDex whatever tinker is installed!
+        MultiDex.install(base);
+        // 安装tinker
+        Beta.installTinker();
     }
 }

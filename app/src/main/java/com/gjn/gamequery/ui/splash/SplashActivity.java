@@ -33,7 +33,7 @@ public class SplashActivity extends BaseActivity{
         imageView.postDelayed(new Runnable() {
             @Override
             public void run() {
-                showNextActivity(MainActivity.class);
+                toNextActivity(MainActivity.class);
             }
         }, 5000);
     }
