@@ -22,7 +22,7 @@ public abstract class BaseFragment extends Fragment {
     protected Context mContext;
     protected Activity mActivity;
     protected Bundle mBundle;
-    private View mView;
+    protected View mView;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {

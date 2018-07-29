@@ -1,11 +1,14 @@
 package com.gjn.gamequery.ui.splash;
 
+import android.support.annotation.NonNull;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
 import com.gjn.gamequery.R;
 import com.gjn.gamequery.base.BaseActivity;
 import com.gjn.gamequery.ui.MainActivity;
+import com.gjn.permissionlibrary.PermissionCallBack;
+import com.gjn.permissionlibrary.PermissionUtils;
 
 /**
  * @author gjn
@@ -16,6 +19,8 @@ public class SplashActivity extends BaseActivity{
 
     private String url = "https://ww1.sinaimg.cn/large/0065oQSqly1ftf1snjrjuj30se10r1kx.jpg";
     private ImageView imageView;
+
+    private boolean isCheck;
 
     @Override
     protected int getLayoutId() {
@@ -30,11 +35,52 @@ public class SplashActivity extends BaseActivity{
 
     @Override
     protected void initData() {
+
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (!isCheck) {
+            isCheck = true;
+            if (PermissionUtils.requestPermissions(this, PermissionUtils.CODE_STORAGE, PermissionUtils.CODE_PHONE)) {
+                toMain();
+            }
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        PermissionUtils.requestPermissionsResult(this, requestCode, permissions, grantResults, new PermissionCallBack() {
+            @Override
+            public void onSuccess(int i) {
+                toMain();
+            }
+
+            @Override
+            public void onFail(int i) {
+
+            }
+
+            @Override
+            public void onRetry(int i) {
+
+            }
+
+            @Override
+            public void onSetting(int i) {
+                isCheck = false;
+            }
+        });
+    }
+
+    private void toMain() {
         imageView.postDelayed(new Runnable() {
             @Override
             public void run() {
                 toNextActivity(MainActivity.class);
             }
-        }, 3000);
+        }, 1000);
+
     }
 }

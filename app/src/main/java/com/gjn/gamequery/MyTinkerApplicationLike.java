@@ -4,6 +4,7 @@ import android.app.Application;
 import android.content.Context;
 import android.content.Intent;
 import android.support.multidex.MultiDex;
+import android.util.Log;
 
 import com.tencent.bugly.Bugly;
 import com.tencent.bugly.beta.Beta;
@@ -16,7 +17,7 @@ import com.tencent.tinker.loader.app.DefaultApplicationLike;
  */
 
 public class MyTinkerApplicationLike extends DefaultApplicationLike {
-
+    private static final String TAG = "MyTinkerApplicationLike";
     private static TinkerListener tinkerListener;
 
     public MyTinkerApplicationLike(Application application, int tinkerFlags, boolean tinkerLoadVerifyFlag,
@@ -45,7 +46,7 @@ public class MyTinkerApplicationLike extends DefaultApplicationLike {
         Beta.betaPatchListener = new BetaPatchListener() {
             @Override
             public void onPatchReceived(String s) {
-
+                Log.d(TAG, "有新版本");
             }
 
             @Override
@@ -55,16 +56,17 @@ public class MyTinkerApplicationLike extends DefaultApplicationLike {
 
             @Override
             public void onDownloadSuccess(String s) {
-
+                Log.d(TAG, "下载成功");
             }
 
             @Override
             public void onDownloadFailure(String s) {
-
+                Log.d(TAG, "下载失败");
             }
 
             @Override
             public void onApplySuccess(String s) {
+                Log.d(TAG, "合成成功");
                 if (tinkerListener != null) {
                     tinkerListener.applyResult(true);
                 }
@@ -72,6 +74,7 @@ public class MyTinkerApplicationLike extends DefaultApplicationLike {
 
             @Override
             public void onApplyFailure(String s) {
+                Log.d(TAG, "合成失败");
                 if (tinkerListener != null) {
                     tinkerListener.applyResult(false);
                 }

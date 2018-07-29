@@ -7,4 +7,24 @@
     android:layout_height="match_parent"
     tools:context="com.gjn.gamequery.ui.MainActivity">
 
+    <FrameLayout
+        android:id="@+id/fl_main"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/bbv_main"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+    </FrameLayout>
+
+    <com.gjn.bottombarlibrary.BottomBarView
+        android:id="@+id/bbv_main"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:containerId="@id/fl_main"
+        app:barViewId="@layout/item_bar_main"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 </android.support.constraint.ConstraintLayout>
