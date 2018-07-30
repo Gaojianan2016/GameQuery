@@ -15,16 +15,24 @@ public class GsonUtils {
     private static Gson gson;
 
     public static String map2json(@NonNull Map<String, Object> map){
+        return obj2json(map);
+    }
+
+    public static String obj2json(Object obj){
         checkNull();
-        return gson.toJson(map);
+        return gson.toJson(obj);
     }
 
     public static Map json2map(@NonNull String json){
+        return json2obj(json, Map.class);
+    }
+
+    public static <T> T json2obj(@NonNull String json, Class<T> cls){
         checkNull();
         if (json.isEmpty()) {
             return null;
         }
-        return gson.fromJson(json, Map.class);
+        return gson.fromJson(json, cls);
     }
 
     private static void checkNull(){

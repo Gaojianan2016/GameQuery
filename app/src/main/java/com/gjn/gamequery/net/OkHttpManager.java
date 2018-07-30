@@ -27,8 +27,6 @@ public class OkHttpManager {
 
     public static final MediaType MEDIA_TYPE_MARKDOWN = MediaType.parse("text/x-markdown; charset=utf-8");
 
-    public static final MediaType MEDIA_TYPE_PNG = MediaType.parse("image/png");
-
     private OkHttpManager() {
         okHttpClient = new OkHttpClient.Builder()
                 .protocols(Collections.singletonList(Protocol.HTTP_1_1))
@@ -46,9 +44,13 @@ public class OkHttpManager {
         return okHttpManager;
     }
 
-    public OkHttpManager setOkHttpClient(OkHttpClient client){
+    public static void setOkHttpClient(OkHttpClient client){
         okHttpClient = client;
-        return this;
+    }
+
+    public static OkHttpClient getOkHttpClient(){
+        getInstance();
+        return okHttpClient;
     }
 
     public void get(String url, Callback callback){
@@ -70,13 +72,13 @@ public class OkHttpManager {
         post(request, callback);
     }
 
-    public void postString(String url, Object string, Callback callback){
+    public void postString(String url, Object stringOrFile, Callback callback){
         Request.Builder builder = new Request.Builder();
         builder.url(url);
-        if (string instanceof String) {
-            builder.post(RequestBody.create(MEDIA_TYPE_MARKDOWN, (String) string));
-        }else if (string instanceof File){
-            builder.post(RequestBody.create(MEDIA_TYPE_MARKDOWN, (File) string));
+        if (stringOrFile instanceof String) {
+            builder.post(RequestBody.create(MEDIA_TYPE_MARKDOWN, (String) stringOrFile));
+        }else if (stringOrFile instanceof File){
+            builder.post(RequestBody.create(MEDIA_TYPE_MARKDOWN, (File) stringOrFile));
         }
         post(builder.build(), callback);
     }

@@ -50,9 +50,7 @@ public class MyTinkerApplicationLike extends DefaultApplicationLike {
             }
 
             @Override
-            public void onDownloadReceived(long savedLength, long totalLength) {
-
-            }
+            public void onDownloadReceived(long savedLength, long totalLength) {}
 
             @Override
             public void onDownloadSuccess(String s) {
@@ -81,9 +79,7 @@ public class MyTinkerApplicationLike extends DefaultApplicationLike {
             }
 
             @Override
-            public void onPatchRollback() {
-
-            }
+            public void onPatchRollback() {}
         };
 
         Bugly.init(getApplication(), "9eeaeaf8a6", BuildConfig.DEBUG);
