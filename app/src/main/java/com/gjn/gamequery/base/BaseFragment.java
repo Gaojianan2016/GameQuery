@@ -56,6 +56,10 @@ public abstract class BaseFragment extends Fragment {
 
     }
 
+    protected final <T extends View> T findViewById(int id){
+        return mView.findViewById(id);
+    }
+
     protected abstract int getLayoutId();
 
     protected abstract void initView();

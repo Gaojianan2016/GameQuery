@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <Button
+        android:id="@+id/btn_1_fh"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="72dp"
+        android:text="设置token"
+        app:layout_constraintEnd_toStartOf="@+id/btn_2_fh"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/btn_2_fh"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="清空token"
+        app:layout_constraintBaseline_toBaselineOf="@+id/btn_1_fh"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/btn_3_fh"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="24dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="72dp"
+        android:text="检查"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/btn_2_fh"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/btn_4_fh"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="17dp"
+        android:text="列表"
+        app:layout_constraintBaseline_toBaselineOf="@+id/btn_5_fh"
+        app:layout_constraintEnd_toStartOf="@+id/btn_5_fh"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/btn_5_fh"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="2dp"
+        android:layout_marginTop="35dp"
+        android:text="新增"
+        app:layout_constraintEnd_toStartOf="@+id/btn_6_fh"
+        app:layout_constraintStart_toEndOf="@+id/btn_4_fh"
+        app:layout_constraintTop_toBottomOf="@+id/btn_2_fh" />
+
+    <Button
+        android:id="@+id/btn_6_fh"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="17dp"
+        android:text="删除"
+        app:layout_constraintBaseline_toBaselineOf="@+id/btn_5_fh"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/btn_5_fh" />
+
+    <Button
+        android:id="@+id/btn_7_fh"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="17dp"
+        android:text="更新数据"
+        app:layout_constraintBaseline_toBaselineOf="@+id/btn_8_fh"
+        app:layout_constraintEnd_toStartOf="@+id/btn_8_fh"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/btn_8_fh"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="2dp"
+        android:layout_marginTop="32dp"
+        app:layout_constraintEnd_toStartOf="@+id/btn_9_fh"
+        app:layout_constraintStart_toEndOf="@+id/btn_7_fh"
+        app:layout_constraintTop_toBottomOf="@+id/btn_5_fh" />
+
+    <Button
+        android:id="@+id/btn_9_fh"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="17dp"
+        app:layout_constraintBaseline_toBaselineOf="@+id/btn_8_fh"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/btn_8_fh" />
+
+    <TextView
+        android:id="@+id/tv_fh"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:padding="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_8_fh" />
+
+    <EditText
+        android:id="@+id/et_fh"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        android:inputType="number"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+</android.support.constraint.ConstraintLayout>

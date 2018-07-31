@@ -29,7 +29,7 @@ public class OkHttpManager {
 
     private OkHttpManager() {
         okHttpClient = new OkHttpClient.Builder()
-                .protocols(Collections.singletonList(Protocol.HTTP_1_1))
+//                .protocols(Collections.singletonList(Protocol.HTTP_1_1))
                 .build();
     }
 

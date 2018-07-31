@@ -16,7 +16,9 @@ import com.gjn.gamequery.fragment.home.HomeFragment;
 import com.gjn.gamequery.fragment.news.NewsFragment;
 import com.gjn.gamequery.fragment.tool.ToolFragment;
 import com.gjn.gamequery.fragment.user.UserFragment;
+import com.gjn.gamequery.net.HeaderInterceptor;
 import com.gjn.gamequery.net.OkHttpManager;
+import com.gjn.gamequery.net.RetrofitManager;
 import com.gjn.gamequery.utils.GsonUtils;
 
 import java.io.IOException;
@@ -41,6 +43,7 @@ import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
+import retrofit2.http.HTTP;
 import retrofit2.http.POST;
 import retrofit2.http.Headers;
 
@@ -121,99 +124,7 @@ public class MainActivity extends BaseActivity {
 
     @Override
     protected void initData() {
-        Callback callback = new Callback() {
-            @Override
-            public void onFailure(Call call, IOException e) {
-                Log.e("-s-", "fail", e);
-            }
-
-            @Override
-            public void onResponse(Call call, Response response) throws IOException {
-                Log.e("-s-", response.body().string());
-            }
-        };
-
-        Map<String, Object> map = new HashMap<>();
-        map.put("a", 111);
-        map.put("b", true);
-        map.put("c", "你好");
-
-        String json = GsonUtils.map2json(map);
-//        OkHttpManager.getInstance().postJson("", map, callback);
-
-//        OkHttpManager.setOkHttpClient(OkHttpManager.getOkHttpClient().newBuilder()
-//                .addInterceptor(new LoggingInterceptor())
-//                .build());
-//
-//        Request request = new Request.Builder()
-//                .url("http://www.publicobject.com/helloworld.txt")
-//                .header("User-Agent", "OkHttp Example")
-//                .build();
-//
-//        OkHttpManager.getInstance().post(request, callback);
-
-        HttpLoggingInterceptor loggingInterceptor = new HttpLoggingInterceptor(new HttpLoggingInterceptor.Logger() {
-            @Override
-            public void log(String message) {
-                Log.d("-s-logging", message);
-            }
-        });
-        loggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
-
-        OkHttpClient okHttpClient = new OkHttpClient.Builder()
-                .addInterceptor(loggingInterceptor)
-                .build();
-
-        Retrofit retrofit = new Retrofit.Builder()
-                .client(okHttpClient)
-                .baseUrl("http://v1.gumiss.com/")
-                .addConverterFactory(GsonConverterFactory.create())
-                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-                .build();
-
-        retrofit.create(IService.class)
-                .splash()
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Consumer<ResponseBody>() {
-                    @Override
-                    public void accept(ResponseBody responseBody) throws Exception {
-                        Log.e("-s-splash", responseBody.string());
-                    }
-                }, new Consumer<Throwable>() {
-                    @Override
-                    public void accept(Throwable throwable) throws Exception {
-                        Log.e("-s-splash", "fail", throwable);
-                    }
-                });
-
-        retrofit.create(IService.class)
-                .cartList()
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Consumer<ResponseBody>() {
-                    @Override
-                    public void accept(ResponseBody responseBody) throws Exception {
-                        Log.e("-s-cartList", responseBody.string());
-
-                    }
-                }, new Consumer<Throwable>() {
-                    @Override
-                    public void accept(Throwable throwable) throws Exception {
-                        Log.e("-s-cartList", "fail", throwable);
-                    }
-                });
 
     }
 
-    public interface IService{
-
-//        @Body("application/json; charset=UTF-8")
-        @GET("front/ad/splash")
-        Observable<ResponseBody> splash();
-
-        @GET("cart/list")
-        Observable<ResponseBody> cartList();
-
-    }
 }
