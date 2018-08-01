@@ -43,7 +43,7 @@ public class RetrofitManager {
     }
 
     public static HeaderInterceptor createInterceptor() {
-        return createInterceptor(new HeaderInterceptor.OnChangeHeader() {
+        return new HeaderInterceptor(new HeaderInterceptor.OnChangeHeader() {
             @Override
             public Map<String, String> addRequestHeader() {
                 Map<String, String> map = new HashMap<>();
@@ -59,14 +59,6 @@ public class RetrofitManager {
                 Constants.X_TOKEN = headers.get("x-token");
             }
         });
-    }
-
-    public static HeaderInterceptor createInterceptor(HeaderInterceptor.OnChangeHeader onChangeHeader) {
-        HeaderInterceptor headerInterceptor = new HeaderInterceptor();
-        if (onChangeHeader != null) {
-            headerInterceptor.setOnChangeHeader(onChangeHeader);
-        }
-        return headerInterceptor;
     }
 
     public static RetrofitManager getInstance() {
@@ -119,11 +111,6 @@ public class RetrofitManager {
                         onLinkListener.fail(throwable);
                     }
                 });
-    }
-
-    public static Observable setMain(Observable observable){
-        return observable.subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread());
     }
 
     public RetrofitManager url(String url) {

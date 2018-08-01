@@ -9,13 +9,16 @@ import android.support.v7.app.AppCompatActivity;
 import android.widget.Toast;
 
 import com.gjn.gamequery.utils.AppManager;
+import com.gjn.gamequery.utils.ToastUtils;
+
+import butterknife.ButterKnife;
 
 /**
  * @author gjn
  * @time 2018/7/25 17:35
  */
 
-public abstract class BaseActivity extends AppCompatActivity {
+public abstract class BaseActivity extends AppCompatActivity implements BaseEvent{
 
     protected Context mContext;
     protected Activity mActivity;
@@ -43,32 +46,37 @@ public abstract class BaseActivity extends AppCompatActivity {
     }
 
     protected void init() {
-
+        ButterKnife.bind(this);
     }
 
-    protected void showNextActivity(Class cls){
+    @Override
+    public void showNextActivity(Class<?> cls) {
         Intent intent = new Intent(this, cls);
         startActivity(intent);
     }
 
-    protected void showNextActivity(Class cls, Bundle bundle){
+    @Override
+    public void showNextActivity(Class<?> cls, Bundle bundle) {
         Intent intent = new Intent(this, cls);
         intent.putExtras(bundle);
         startActivity(intent);
     }
 
-    protected void toNextActivity(Class cls){
+    @Override
+    public void toNextActivity(Class<?> cls) {
         showNextActivity(cls);
         finish();
     }
 
-    protected void toNextActivity(Class cls, Bundle bundle){
+    @Override
+    public void toNextActivity(Class<?> cls, Bundle bundle) {
         showNextActivity(cls, bundle);
         finish();
     }
 
-    protected void showToast(String msg){
-        Toast.makeText(mContext, msg, Toast.LENGTH_SHORT).show();
+    @Override
+    public void showToast(String msg) {
+        ToastUtils.showToast(mContext, msg);
     }
 
     @Override

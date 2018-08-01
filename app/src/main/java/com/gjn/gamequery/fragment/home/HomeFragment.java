@@ -7,12 +7,21 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.gjn.gamequery.R;
+import com.gjn.gamequery.annotation.AnnotationsUtils;
+import com.gjn.gamequery.annotation.Test;
+import com.gjn.gamequery.annotation.Test2;
 import com.gjn.gamequery.base.BaseFragment;
 import com.gjn.gamequery.net.OkHttpManager;
 import com.gjn.gamequery.net.RetrofitManager;
+import com.gjn.gamequery.ui.TestActivity;
 import com.gjn.gamequery.utils.Constants;
 
-import io.reactivex.functions.Consumer;
+import java.lang.annotation.Annotation;
+import java.lang.reflect.Field;
+import java.util.List;
+
+import butterknife.BindView;
+import butterknife.OnClick;
 import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
 
@@ -21,10 +30,17 @@ import okhttp3.ResponseBody;
  * Created by gjn
  * on 2018-07-28 19:56.
  */
-public class HomeFragment extends BaseFragment implements View.OnClickListener {
-    private Button btn1, btn2, btn3, btn4, btn5, btn6, btn7, btn8, btn9;
-    private TextView tv;
-    private EditText et;
+
+@Test(R.layout.fragment_home)
+public class HomeFragment extends BaseFragment{
+    @BindView(R.id.tv_fh)
+    TextView tvFh;
+    @BindView(R.id.et_fh)
+    EditText etFh;
+
+    @Test2(R.id.btn_8_fh)
+    Button button;
+
     private IHomeService service;
     private RetrofitManager.OnLinkListener link;
 
@@ -35,32 +51,39 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
 
     @Override
     protected void initView() {
-        btn1 = findViewById(R.id.btn_1_fh);
-        btn2 = findViewById(R.id.btn_2_fh);
-        btn3 = findViewById(R.id.btn_3_fh);
-        btn4 = findViewById(R.id.btn_4_fh);
-        btn5 = findViewById(R.id.btn_5_fh);
-        btn6 = findViewById(R.id.btn_6_fh);
-        btn7 = findViewById(R.id.btn_7_fh);
-        btn8 = findViewById(R.id.btn_8_fh);
-        btn9 = findViewById(R.id.btn_9_fh);
-        tv = findViewById(R.id.tv_fh);
-        et = findViewById(R.id.et_fh);
 
-        et.setText("5553");
+        Test test = AnnotationsUtils.getAnnotations(mFragment, Test.class);
+        if (test != null) {
+            int id = test.value();
+            String str = "当前Test注解id为 = " + id;
+            Log.e("-s-", str);
+        }
+
+        try {
+            AnnotationsUtils.setFieldAnnotations(this, Test2.class, new AnnotationsUtils.setAnnotations() {
+                @Override
+                public void set(Object obj, List<Field> fields, Annotation annotation) throws IllegalAccessException {
+                    Field field = fields.get(0);
+                    field.setAccessible(true);
+                    field.set(mFragment, ((BaseFragment) mFragment).findViewById(((Test2) annotation).value()));
+                }
+            });
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        }
     }
+
 
     @Override
     protected void initData() {
-        btn1.setOnClickListener(this);
-        btn2.setOnClickListener(this);
-        btn3.setOnClickListener(this);
-        btn4.setOnClickListener(this);
-        btn5.setOnClickListener(this);
-        btn6.setOnClickListener(this);
-        btn7.setOnClickListener(this);
-        btn8.setOnClickListener(this);
-        btn9.setOnClickListener(this);
+
+        button.setText("进入测试按钮");
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showNextActivity(TestActivity.class);
+            }
+        });
 
         service = RetrofitManager.create("http://v1.gumiss.com/", IHomeService.class);
 
@@ -69,22 +92,23 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
             public void success(ResponseBody responseBody) throws Exception {
                 String str = responseBody.string();
                 Log.e("-s-", str);
-                tv.setText(str);
+                tvFh.setText(str);
             }
 
             @Override
             public void fail(Throwable throwable) {
                 Log.e("-s-", "fail");
-                tv.setText(throwable.getMessage());
+                tvFh.setText(throwable.getMessage());
             }
         };
     }
 
-    @Override
-    public void onClick(View v) {
+    @OnClick({R.id.btn_1_fh, R.id.btn_2_fh, R.id.btn_3_fh, R.id.btn_4_fh, R.id.btn_5_fh,
+            R.id.btn_6_fh, R.id.btn_7_fh})
+    public void onViewClicked(View view) {
         String str;
         RequestBody body;
-        switch (v.getId()) {
+        switch (view.getId()) {
             case R.id.btn_1_fh:
                 Constants.X_TOKEN = "6387a47fa40f0ea69ff93fd2853b4f02";
                 break;
@@ -108,21 +132,17 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
                 RetrofitManager.link(service.save(body), link);
                 break;
             case R.id.btn_6_fh:
-                RetrofitManager.link(service.delete(et.getText().toString().trim()), link);
+                RetrofitManager.link(service.delete(etFh.getText().toString().trim()), link);
                 break;
             case R.id.btn_7_fh:
                 str = "{" +
                         "  \"consignee\": \"string\"," +
-                        "  \"id\": " + et.getText().toString().trim() + "," +
+                        "  \"id\": " + etFh.getText().toString().trim() + "," +
                         "  \"isDefault\": false," +
                         "  \"phone\": \"13787654321\"" +
                         "}";
                 body = RequestBody.create(OkHttpManager.MEDIA_TYPE_JSON, str);
                 RetrofitManager.link(service.update(body), link);
-                break;
-            case R.id.btn_8_fh:
-                break;
-            case R.id.btn_9_fh:
                 break;
             default:
                 break;

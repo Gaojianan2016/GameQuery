@@ -3,6 +3,8 @@ package com.gjn.gamequery.net;
 import android.support.annotation.NonNull;
 import android.util.Log;
 
+import com.gjn.gamequery.BuildConfig;
+
 import java.io.IOException;
 import java.util.Map;
 
@@ -19,10 +21,17 @@ import okhttp3.Response;
 public class HeaderInterceptor implements Interceptor {
     private static final String TAG = "HeaderInterceptor";
 
-    public static boolean isDebug = false;
-    public static boolean isLinkTime = true;
+    public static boolean isDebug = BuildConfig.DEBUG;
+    public static boolean isLinkTime = BuildConfig.DEBUG;
 
     private OnChangeHeader onChangeHeader;
+
+    public HeaderInterceptor() {
+    }
+
+    public HeaderInterceptor(OnChangeHeader onChangeHeader) {
+        this.onChangeHeader = onChangeHeader;
+    }
 
     @Override
     public Response intercept(@NonNull Chain chain) throws IOException {
