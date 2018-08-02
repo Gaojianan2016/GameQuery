@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -45,11 +46,14 @@ public abstract class BaseFragment extends Fragment implements BaseEvent{
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         if (mView == null) {
             mView = inflater.inflate(getLayoutId(), null);
-
+            Log.e("-s-", "new view");
             init();
             initView();
             initData();
+        }else {
+            Log.e("-s-", "old view");
         }
+        Log.e("-s-", "mView = " + mView);
         ViewUtils.checkParent(mView);
         return mView;
     }

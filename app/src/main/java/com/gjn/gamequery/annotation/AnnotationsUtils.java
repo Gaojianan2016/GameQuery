@@ -17,7 +17,6 @@ public class AnnotationsUtils {
 
     public static boolean checkAnnotations(Object obj, Class<? extends Annotation> annotationCls){
         Class<?> clazz = obj.getClass();
-        Log.d(TAG, "clazz = " + clazz.getSimpleName());
         if (clazz.getAnnotations() != null) {
             if (clazz.isAnnotationPresent(annotationCls)) {
                 return true;
@@ -32,7 +31,6 @@ public class AnnotationsUtils {
                 return true;
             }
         }
-        Log.d(TAG, "annotation field is null");
         return false;
     }
 
@@ -40,7 +38,6 @@ public class AnnotationsUtils {
         if (checkAnnotations(obj, annotationCls)) {
             return obj.getClass().getAnnotation(annotationCls);
         }
-        Log.d(TAG, "annotation is null");
         return null;
     }
 

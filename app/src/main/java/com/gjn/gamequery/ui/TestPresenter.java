@@ -7,9 +7,11 @@ import com.gjn.gamequery.mvp.BasePresenter;
  * @time 2018/8/1 17:07
  */
 
-public class TestPresenter extends BasePresenter<ITestView> {
+public class TestPresenter extends BasePresenter<ITestView, TestModel> {
 
     public void success(){
-        getMvpView().success();
+        if (isAttached()) {
+            getModel().success();
+        }
     }
 }

@@ -1,20 +1,26 @@
 package com.gjn.gamequery.mvp;
 
-import com.gjn.gamequery.base.BaseActivity;
+import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
+import android.util.Log;
+import android.view.View;
+
+import com.gjn.gamequery.base.BaseFragment;
 
 /**
  * @author gjn
- * @time 2018/8/1 16:57
+ * @time 2018/8/2 10:40
  */
 
-public abstract class BaseMvpActivity<P extends BasePresenter> extends BaseActivity implements IMvpView {
+public abstract class BaseMvpFragment<P extends BasePresenter> extends BaseFragment implements IMvpView {
 
     protected MvpBindAnnotations mvpBindAnnotations;
 
     @Override
     protected void init() {
         super.init();
-        mvpBindAnnotations = MvpBindAnnotations.getInstance(mActivity);
+        mvpBindAnnotations = MvpBindAnnotations.getInstance(mActivity, mFragment);
     }
 
     protected P getPresenter() {
@@ -26,7 +32,7 @@ public abstract class BaseMvpActivity<P extends BasePresenter> extends BaseActiv
     }
 
     @Override
-    protected void onDestroy() {
+    public void onDestroy() {
         mvpBindAnnotations.detachedAll();
         super.onDestroy();
     }
