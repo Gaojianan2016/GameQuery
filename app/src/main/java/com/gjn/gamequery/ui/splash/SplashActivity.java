@@ -5,20 +5,24 @@ import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
 import com.gjn.gamequery.R;
-import com.gjn.gamequery.base.BaseActivity;
+import com.gjn.gamequery.base.BaseGQActivity;
 import com.gjn.gamequery.ui.MainActivity;
 import com.gjn.permissionlibrary.PermissionCallBack;
 import com.gjn.permissionlibrary.PermissionUtils;
+
+import butterknife.BindView;
 
 /**
  * @author gjn
  * @time 2018/7/25 17:35
  */
 
-public class SplashActivity extends BaseActivity{
+public class SplashActivity extends BaseGQActivity {
 
-    private String url = "https://ww1.sinaimg.cn/large/0065oQSqly1ftf1snjrjuj30se10r1kx.jpg";
-    private ImageView imageView;
+    private static final String IMG_URL = "https://ww1.sinaimg.cn/large/0065oQSqly1ftf1snjrjuj30se10r1kx.jpg";
+
+    @BindView(R.id.iv_splash)
+    ImageView imageView;
 
     private boolean isCheck;
 
@@ -29,13 +33,12 @@ public class SplashActivity extends BaseActivity{
 
     @Override
     protected void initView() {
-        imageView = findViewById(R.id.iv_splash);
-        Glide.with(mActivity).load(url).into(imageView);
+
     }
 
     @Override
     protected void initData() {
-
+        Glide.with(mActivity).load(IMG_URL).into(imageView);
     }
 
     @Override
@@ -81,6 +84,5 @@ public class SplashActivity extends BaseActivity{
                 toNextActivity(MainActivity.class);
             }
         }, 1000);
-
     }
 }

@@ -1,6 +1,5 @@
 package com.gjn.gamequery.ui;
 
-import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
@@ -9,7 +8,7 @@ import com.gjn.bottombarlibrary.BottomBarView;
 import com.gjn.bottombarlibrary.OnBindBarDateListener;
 import com.gjn.gamequery.MyTinkerApplicationLike;
 import com.gjn.gamequery.R;
-import com.gjn.gamequery.base.BaseActivity;
+import com.gjn.gamequery.base.BaseGQActivity;
 import com.gjn.gamequery.fragment.home.HomeFragment;
 import com.gjn.gamequery.fragment.news.NewsFragment;
 import com.gjn.gamequery.fragment.tool.ToolFragment;
@@ -20,16 +19,15 @@ import java.util.List;
 
 import butterknife.BindView;
 
-public class MainActivity extends BaseActivity {
+public class MainActivity extends BaseGQActivity {
 
-    @BindView(R.id.bbv_main)
-    BottomBarView bbvMain;
-
-    private List<BarTab> list;
     public static final String BAR_HOME = "首页";
     public static final String BAR_NEWS = "新闻";
     public static final String BAR_TOOL = "工具";
     public static final String BAR_USER = "我";
+
+    @BindView(R.id.bbv_main)
+    BottomBarView bbvMain;
 
     @Override
     protected int getLayoutId() {
@@ -52,40 +50,27 @@ public class MainActivity extends BaseActivity {
     @Override
     protected void initView() {
 
-        list = new ArrayList<>();
+        List<BarTab> list = new ArrayList<>();
         BarTab barTab;
-        Bundle bundle;
 
         barTab = new BarTab();
         barTab.setTitle(BAR_HOME);
         barTab.setCls(HomeFragment.class);
-        bundle = new Bundle();
-        bundle.putString("title", BAR_HOME);
-        barTab.setBundle(bundle);
         list.add(barTab);
 
         barTab = new BarTab();
         barTab.setTitle(BAR_NEWS);
         barTab.setCls(NewsFragment.class);
-        bundle = new Bundle();
-        bundle.putString("title", BAR_NEWS);
-        barTab.setBundle(bundle);
         list.add(barTab);
 
         barTab = new BarTab();
         barTab.setTitle(BAR_TOOL);
         barTab.setCls(ToolFragment.class);
-        bundle = new Bundle();
-        bundle.putString("title", BAR_TOOL);
-        barTab.setBundle(bundle);
         list.add(barTab);
 
         barTab = new BarTab();
         barTab.setTitle(BAR_USER);
         barTab.setCls(UserFragment.class);
-        bundle = new Bundle();
-        bundle.putString("title", BAR_USER);
-        barTab.setBundle(bundle);
         list.add(barTab);
 
         bbvMain.setOnBindBarDateListener(new OnBindBarDateListener() {

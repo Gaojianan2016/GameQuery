@@ -31,8 +31,11 @@
         <!--首页-->
         <activity android:name=".ui.MainActivity" />
 
+        <!--web网页-->
+        <activity android:name=".ui.webview.WebActivity" />
+
         <!--测试页面-->
-        <activity android:name=".ui.TestActivity" />
+        <activity android:name=".ui.test.TestActivity" />
 
         <!--bugly热更新-->
         <activity

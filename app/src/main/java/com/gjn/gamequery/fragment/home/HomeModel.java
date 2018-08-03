@@ -1,0 +1,46 @@
+package com.gjn.gamequery.fragment.home;
+
+import android.util.Log;
+
+import com.gjn.gamequery.net.RetrofitManager;
+import com.gjn.gamequery.net.WanandroidUrl;
+import com.gjn.gamequery.net.response.WanHomeResponse;
+import com.gjn.gamequery.ui.test.ITestView;
+import com.gjn.gamequery.utils.GsonUtils;
+import com.gjn.mvpannotationlibrary.base.BaseModel;
+
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.functions.Consumer;
+import io.reactivex.schedulers.Schedulers;
+
+/**
+ * @author gjn
+ * @time 2018/8/3 16:11
+ */
+
+public class HomeModel extends BaseModel<IHomeView> {
+
+    void list(int page){
+        RetrofitManager.getInstance()
+                .url(WanandroidUrl.BASE)
+                .create(WanandroidUrl.class)
+                .home(page)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Consumer<WanHomeResponse>() {
+                    @Override
+                    public void accept(WanHomeResponse wanHomeResponse) throws Exception {
+                        if (wanHomeResponse != null) {
+                            getMvpView().setList(wanHomeResponse.getData().getDatas());
+                        }else {
+                            getMvpView().fail();
+                        }
+                    }
+                }, new Consumer<Throwable>() {
+                    @Override
+                    public void accept(Throwable throwable) throws Exception {
+                        getMvpView().error(throwable);
+                    }
+                });
+    }
+}

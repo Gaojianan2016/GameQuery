@@ -1,15 +1,9 @@
 package com.gjn.gamequery.net;
 
-import com.gjn.gamequery.utils.Constants;
-
-import java.util.HashMap;
-import java.util.Map;
-
 import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
-import okhttp3.Headers;
 import okhttp3.OkHttpClient;
 import okhttp3.ResponseBody;
 import retrofit2.Retrofit;
@@ -35,30 +29,11 @@ public class RetrofitManager {
 
     public static OkHttpClient createClient() {
         if (headerInterceptor == null) {
-            headerInterceptor = createInterceptor();
+            headerInterceptor = new HeaderInterceptor();
         }
         return new OkHttpClient.Builder()
                 .addInterceptor(headerInterceptor)
                 .build();
-    }
-
-    public static HeaderInterceptor createInterceptor() {
-        return new HeaderInterceptor(new HeaderInterceptor.OnChangeHeader() {
-            @Override
-            public Map<String, String> addRequestHeader() {
-                Map<String, String> map = new HashMap<>();
-                map.put("x-token", Constants.X_TOKEN);
-                map.put("x-client", Constants.CLIENT);
-                map.put("x-device", Constants.DEVICE);
-                map.put("x-version", Constants.VERSION);
-                return map;
-            }
-
-            @Override
-            public void getResponseHeader(String url, Headers headers) {
-                Constants.X_TOKEN = headers.get("x-token");
-            }
-        });
     }
 
     public static RetrofitManager getInstance() {
