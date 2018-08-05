@@ -1,5 +1,7 @@
 package com.gjn.gamequery.utils;
 
+import java.text.SimpleDateFormat;
+
 /**
  * StringUtils
  * Created by gjn
@@ -34,5 +36,10 @@ public class StringUtils {
             return replace;
         }
         return deleteLast(str, replace.length()) + replace;
+    }
+
+    public static String formatTime(long time){
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        return dateFormat.format(time);
     }
 }

@@ -10,12 +10,18 @@ import com.gjn.mvpannotationlibrary.base.BasePresenter;
 public class HomePresenter extends BasePresenter<IHomeView, HomeModel> {
 
     public void list(){
-        list(0);
+        list(1);
     }
 
     public void list(int page){
         if (isAttached()) {
-            getModel().list(page);
+            getModel().getHomeList(page);
+        }
+    }
+
+    public void banner(){
+        if (isAttached()) {
+            getModel().getBanner();
         }
     }
 }

@@ -1,12 +1,12 @@
 package com.gjn.gamequery.adapter;
 
 import android.content.Context;
-import android.util.Log;
 
 import com.gjn.gamequery.R;
 import com.gjn.gamequery.base.BaseRecyclerAdapter;
 import com.gjn.gamequery.base.RecyclerViewHolder;
 import com.gjn.gamequery.net.data.WanHomeData;
+import com.gjn.gamequery.utils.StringUtils;
 
 import java.util.List;
 
@@ -25,5 +25,7 @@ public class HomeListAdapter extends BaseRecyclerAdapter<WanHomeData.DatasBean> 
     public void bindData(RecyclerViewHolder holder, WanHomeData.DatasBean item, int position) {
         holder.setTextViewText(R.id.tv_title_ahl, item.getTitle());
         holder.setTextViewText(R.id.tv_author_ahl, item.getAuthor());
+        holder.setTextViewText(R.id.tv_desc_ahl, item.getDesc());
+        holder.setTextViewText(R.id.tv_time_ahl, StringUtils.formatTime(item.getPublishTime()));
     }
 }

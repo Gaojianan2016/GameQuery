@@ -1,5 +1,6 @@
 package com.gjn.gamequery.net;
 
+import com.gjn.gamequery.net.response.WanBannerResponse;
 import com.gjn.gamequery.net.response.WanHomeResponse;
 
 import io.reactivex.Observable;
@@ -16,4 +17,7 @@ public interface WanandroidUrl {
 
     @GET("article/list/{page}/json")
     Observable<WanHomeResponse> home(@Path("page") int page);
+
+    @GET("banner/json")
+    Observable<WanBannerResponse> banner();
 }
