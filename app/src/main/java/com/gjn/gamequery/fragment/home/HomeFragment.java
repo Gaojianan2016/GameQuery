@@ -3,6 +3,7 @@ package com.gjn.gamequery.fragment.home;
 import android.content.Context;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 
@@ -15,10 +16,11 @@ import com.gjn.gamequery.base.BaseGQFragment;
 import com.gjn.gamequery.base.BaseRecyclerAdapter;
 import com.gjn.gamequery.net.data.WanBannerData;
 import com.gjn.gamequery.net.data.WanHomeData;
+import com.gjn.gamequery.utils.TimeUtils;
 import com.gjn.indicatorlibrary.Indicator;
-import com.gjn.mvpannotationlibrary.utils.BindPresenter;
 import com.gjn.mvpannotationlibrary.utils.BindPresenters;
 
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,15 +32,13 @@ import butterknife.BindView;
  * on 2018-07-28 19:56.
  */
 
-@BindPresenters(presenters = {HomePresenter.class})
-public class HomeFragment extends BaseGQFragment implements IHomeView {
+@BindPresenters({HomePresenter.class})
+public class HomeFragment extends BaseGQFragment<HomePresenter> implements IHomeView {
 
     @BindView(R.id.rv_list_fh)
     RecyclerView rvListFh;
     @BindView(R.id.banner_fh)
     Banner banner;
-    @BindPresenter
-    private HomePresenter presenter;
 
     private HomeListAdapter adapter;
 
@@ -76,8 +76,8 @@ public class HomeFragment extends BaseGQFragment implements IHomeView {
 
     @Override
     protected void initData() {
-        presenter.list();
-        presenter.banner();
+        getPresenter().list();
+        getPresenter().banner();
 
         adapter.setOnItemClickListener(new BaseRecyclerAdapter.OnItemClickListener() {
             @Override

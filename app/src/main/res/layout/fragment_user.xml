@@ -8,18 +8,20 @@
 
     <ImageView
         android:id="@+id/iv_img_fu"
-        android:layout_width="65dp"
+        android:layout_width="0dp"
         android:layout_height="65dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@mipmap/default_img" />
 
     <TextView
         android:id="@+id/tv_name_fu"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
+        android:text="从零开始辣鸡哲"
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintStart_toEndOf="@+id/iv_img_fu"
@@ -41,12 +43,52 @@
         android:id="@+id/rv_users_fu"
         android:layout_width="0dp"
         android:layout_height="120dp"
-        android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        app:layout_constraintBottom_toTopOf="@+id/rv_list_fu"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/iv_img_fu" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_time_fu" />
+
+    <TextView
+        android:id="@+id/tv_zj_fu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="100/100"
+        app:layout_constraintStart_toStartOf="@+id/tv_name_fu"
+        app:layout_constraintTop_toBottomOf="@+id/tv_name_fu" />
+
+    <TextView
+        android:id="@+id/tv_lv_fu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@android:color/darker_gray"
+        android:paddingEnd="2dp"
+        android:paddingStart="2dp"
+        android:text="Lv.300"
+        android:textColor="@android:color/white"
+        android:textSize="11sp"
+        app:layout_constraintBottom_toBottomOf="@+id/iv_img_fu"
+        app:layout_constraintEnd_toEndOf="@+id/iv_img_fu" />
+
+    <TextView
+        android:id="@+id/tv_elo_fu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:text="rank：3000"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_zj_fu"
+        app:layout_constraintStart_toEndOf="@+id/tv_zj_fu"
+        app:layout_constraintTop_toTopOf="@+id/tv_zj_fu" />
+
+    <TextView
+        android:id="@+id/tv_time_fu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginTop="88dp"
+        android:text="更新时间"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 </android.support.constraint.ConstraintLayout>

@@ -1,5 +1,6 @@
 package com.gjn.gamequery.ui.webview;
 
+import android.graphics.Bitmap;
 import android.os.Build;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -38,6 +39,18 @@ public class WebActivity extends BaseGQActivity {
 
         webView.setWebViewClient(new WebViewClient(){
             @Override
+            public void onPageStarted(WebView view, String url, Bitmap favicon) {
+                super.onPageStarted(view, url, favicon);
+                Log.d("-s-", "onPageStarted = " + url);
+            }
+
+            @Override
+            public void onPageFinished(WebView view, String url) {
+                super.onPageFinished(view, url);
+                Log.d("-s-", "onPageFinished = " + url);
+            }
+
+            @Override
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
                 webView.loadUrl(url);
                 return true;
@@ -53,7 +66,6 @@ public class WebActivity extends BaseGQActivity {
             finish();
             return;
         }
-        Log.e("-s-", "load = " + url);
         webView.loadUrl(url);
     }
 

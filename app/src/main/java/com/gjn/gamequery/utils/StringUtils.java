@@ -1,5 +1,6 @@
 package com.gjn.gamequery.utils;
 
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 
 /**
@@ -38,8 +39,8 @@ public class StringUtils {
         return deleteLast(str, replace.length()) + replace;
     }
 
-    public static String formatTime(long time){
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        return dateFormat.format(time);
+    public static String doubleFormat(double d){
+        DecimalFormat format = new DecimalFormat("0.00");
+        return format.format(d);
     }
 }

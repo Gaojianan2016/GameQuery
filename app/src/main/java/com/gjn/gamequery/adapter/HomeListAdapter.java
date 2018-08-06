@@ -7,6 +7,7 @@ import com.gjn.gamequery.base.BaseRecyclerAdapter;
 import com.gjn.gamequery.base.RecyclerViewHolder;
 import com.gjn.gamequery.net.data.WanHomeData;
 import com.gjn.gamequery.utils.StringUtils;
+import com.gjn.gamequery.utils.TimeUtils;
 
 import java.util.List;
 
@@ -26,6 +27,6 @@ public class HomeListAdapter extends BaseRecyclerAdapter<WanHomeData.DatasBean> 
         holder.setTextViewText(R.id.tv_title_ahl, item.getTitle());
         holder.setTextViewText(R.id.tv_author_ahl, item.getAuthor());
         holder.setTextViewText(R.id.tv_desc_ahl, item.getDesc());
-        holder.setTextViewText(R.id.tv_time_ahl, StringUtils.formatTime(item.getPublishTime()));
+        holder.setTextViewText(R.id.tv_time_ahl, TimeUtils.formatTime(item.getPublishTime()));
     }
 }

@@ -22,7 +22,7 @@ import butterknife.BindView;
 public class MainActivity extends BaseGQActivity {
 
     public static final String BAR_HOME = "首页";
-    public static final String BAR_NEWS = "新闻";
+    public static final String BAR_NEWS = "项目";
     public static final String BAR_TOOL = "工具";
     public static final String BAR_USER = "我";
 

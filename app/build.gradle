@@ -46,6 +46,7 @@ dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation 'com.android.support:appcompat-v7:27.1.1'
     implementation 'com.android.support:recyclerview-v7:27.1.1'
+    implementation 'com.android.support:support-v4:27.1.1'
     implementation 'com.android.support.constraint:constraint-layout:1.1.2'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
@@ -62,7 +63,7 @@ dependencies {
     //控件
     implementation 'com.github.Gaojianan2016:BottomBar:1.0.5'
     implementation 'com.github.Gaojianan2016:PermissionUtils:1.0.2'
-    implementation 'com.github.Gaojianan2016:MVPAnnotationUtils:1.0.0'
+    implementation 'com.github.Gaojianan2016:MVPAnnotationUtils:1.0.1'
     implementation 'com.github.Gaojianan2016:Banner:1.0.6'
     implementation 'com.github.Gaojianan2016:IndicatorLayout:1.0.8'
     // 多dex配置

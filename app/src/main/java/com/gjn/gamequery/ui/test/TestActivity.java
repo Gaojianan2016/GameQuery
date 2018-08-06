@@ -9,7 +9,7 @@ import com.gjn.mvpannotationlibrary.utils.BindPresenters;
  * @time 2018/8/1 17:03
  */
 
-@BindPresenters(presenters = {TestPresenter.class})
+@BindPresenters({TestPresenter.class})
 public class TestActivity extends BaseGQActivity<TestPresenter> implements ITestView {
 
     @Override
