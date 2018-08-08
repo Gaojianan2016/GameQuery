@@ -53,4 +53,16 @@ public class TimeUtils {
         }
         return formatTime(oldTime);
     }
+
+    public static String getTime(String time) throws ParseException {
+        return getTime(time, "MM-dd");
+    }
+
+    public static String getTime(String time, String format) throws ParseException {
+        time = TimeUtils.overTime(time);
+        if (time.length() > 8) {
+            return TimeUtils.formatTime(TimeUtils.formatTime(time), format);
+        }
+        return time;
+    }
 }

@@ -79,7 +79,7 @@ public class UserFragment extends BaseGQFragment<UserPresenter> implements IUser
                 + " ("+StringUtils.doubleFormat(role.getWinCount() * 1.0 / role.getMatchCount() * 100)+"%)");
         tvNameFu.setText(role.getRoleName());
         try {
-            tvTimeFu.setText("更新时间："+ TimeUtils.overTime(role.getUpdateTime()));
+            tvTimeFu.setText("更新时间："+ TimeUtils.getTime(role.getUpdateTime()));
         } catch (ParseException e) {}
     }
 
