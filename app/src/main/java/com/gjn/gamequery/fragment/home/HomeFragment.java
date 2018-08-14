@@ -51,8 +51,8 @@ public class HomeFragment extends BaseGQFragment<HomePresenter> implements IHome
     protected void initView() {
         setBanner();
 
-        rvListFh.setLayoutManager(new LinearLayoutManager(mContext));
-        adapter = new HomeListAdapter(mContext, null);
+        rvListFh.setLayoutManager(new LinearLayoutManager(mActivity));
+        adapter = new HomeListAdapter(mActivity, null);
         rvListFh.setAdapter(adapter);
     }
 

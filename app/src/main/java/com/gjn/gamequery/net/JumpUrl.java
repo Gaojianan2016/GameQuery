@@ -24,6 +24,6 @@ public interface JumpUrl {
     Observable<JumpListData> getlist(@Query("name") String name);
 
     @GET("api/getmatch")
-    Observable<JumpMatchData> getmatch(@Query("id") int id);
+    Observable<JumpMatchData> getmatch(@Query("id") long id);
 
 }

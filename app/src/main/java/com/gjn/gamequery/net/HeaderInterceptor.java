@@ -59,13 +59,7 @@ public class HeaderInterceptor implements Interceptor {
             }
         }
         log("============ HTTP REQUEST END ============");
-        Response response;
-        try {
-            response = chain.proceed(request);
-        } catch (Exception e) {
-            Log.e(TAG, "--> HTTP FAILED: " + e);
-            return null;
-        }
+        Response response = chain.proceed(request);
         long endTime = System.nanoTime();
         if (isLinkTime) {
             Log.d(TAG, String.format("--> %s : %.1fms", response.request().url(), (endTime - startTime) / 1e6d));

@@ -21,9 +21,9 @@ public class UserPresenter extends BasePresenter<IUserView, UserModel> {
         }
     }
 
-    public void getMatch(int id){
+    public void getMatch(long id, boolean isCheck){
         if (isAttached()) {
-            getModel().getMatch(id);
+            getModel().getMatch(id, isCheck);
         }
     }
 }

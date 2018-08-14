@@ -28,6 +28,7 @@ public class JumpMatchData {
     }
 
     public static class MatchBean {
+        private long MatchID;
         private int MatchType;
         private int WinSideKill;
         private int LoseSideKill;
@@ -37,6 +38,14 @@ public class JumpMatchData {
         private int FindCount;
         private List<SideBean> WinSide;
         private List<SideBean> LoseSide;
+
+        public long getMatchID() {
+            return MatchID;
+        }
+
+        public void setMatchID(long matchID) {
+            MatchID = matchID;
+        }
 
         public int getMatchType() {
             return MatchType;
@@ -112,7 +121,7 @@ public class JumpMatchData {
 
         public static class SideBean {
             private String RoleName;
-            private int RoleID;
+            private long RoleID;
             private int RoleLevel;
             private int HeroID;
             private int HeroLevel;
@@ -146,11 +155,11 @@ public class JumpMatchData {
                 this.RoleName = RoleName;
             }
 
-            public int getRoleID() {
+            public long getRoleID() {
                 return RoleID;
             }
 
-            public void setRoleID(int RoleID) {
+            public void setRoleID(long RoleID) {
                 this.RoleID = RoleID;
             }
 
