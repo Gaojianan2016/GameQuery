@@ -3,11 +3,9 @@ package com.gjn.gamequery.fragment.home;
 import android.content.Context;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 
-import com.bumptech.glide.Glide;
 import com.gjn.bannerlibrary.Banner;
 import com.gjn.bannerlibrary.LoopViewPager;
 import com.gjn.gamequery.R;
@@ -16,11 +14,10 @@ import com.gjn.gamequery.base.BaseGQFragment;
 import com.gjn.gamequery.base.BaseRecyclerAdapter;
 import com.gjn.gamequery.net.data.WanBannerData;
 import com.gjn.gamequery.net.data.WanHomeData;
-import com.gjn.gamequery.utils.TimeUtils;
+import com.gjn.gamequery.utils.GlideUtils;
 import com.gjn.indicatorlibrary.Indicator;
 import com.gjn.mvpannotationlibrary.utils.BindPresenters;
 
-import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -63,7 +60,7 @@ public class HomeFragment extends BaseGQFragment<HomePresenter> implements IHome
             @Override
             public void imageLoader(Context context, Object o, ImageView imageView) {
                 WanBannerData data = (WanBannerData) o;
-                Glide.with(context).load(data.getImagePath()).into(imageView);
+                GlideUtils.loadImg(data.getImagePath(), imageView);
             }
         }).setOnItemClickListener(new LoopViewPager.onClickListener() {
             @Override

@@ -57,11 +57,11 @@ public class UserModel extends BaseModel<IUserView> {
                 });
     }
 
-    void getList(String name){
+    void getList(String name, int page){
         RetrofitManager.getInstance()
                 .url(JumpUrl.BASE)
                 .create(JumpUrl.class)
-                .getlist(name)
+                .getlist(name, page * 10)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Consumer<JumpListData>() {

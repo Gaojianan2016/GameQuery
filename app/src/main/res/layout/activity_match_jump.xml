@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <com.gjn.toolbarlibrary.TitleBar
+            android:id="@+id/tb_amj"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            app:leftImage="@mipmap/back"
+            app:left_paddingLeft="15dp"
+            app:left_width="35dp"
+            app:rightImage="@mipmap/reload"
+            app:right_paddingRight="15dp"
+            app:right_width="35dp"
+            app:title="战绩详情" />
+
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/tv_1_amj"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:layout_marginTop="16dp"
+                android:text="结束时间"
+                app:layout_constraintEnd_toStartOf="@+id/gl_h1_amj"
+                app:layout_constraintStart_toStartOf="@+id/gl_h1_amj"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tv_overtime_amj"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="10:10:10"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="@+id/tv_1_amj"
+                app:layout_constraintStart_toStartOf="@+id/tv_1_amj"
+                app:layout_constraintTop_toBottomOf="@+id/tv_1_amj" />
+
+            <TextView
+                android:id="@+id/tv_2_amj"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:text="类型"
+                app:layout_constraintEnd_toStartOf="@+id/gl_h2_amj"
+                app:layout_constraintHorizontal_bias="0.388"
+                app:layout_constraintStart_toStartOf="@+id/gl_h2_amj"
+                app:layout_constraintTop_toTopOf="@+id/tv_1_amj" />
+
+            <TextView
+                android:id="@+id/tv_type_amj"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="竞技场"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="@+id/tv_2_amj"
+                app:layout_constraintStart_toStartOf="@+id/tv_2_amj"
+                app:layout_constraintTop_toBottomOf="@+id/tv_2_amj" />
+
+            <TextView
+                android:id="@+id/tv_3_amj"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:text="比赛时长"
+                app:layout_constraintEnd_toStartOf="@+id/gl_h3_amj"
+                app:layout_constraintHorizontal_bias="0.359"
+                app:layout_constraintStart_toStartOf="@+id/gl_h3_amj"
+                app:layout_constraintTop_toTopOf="@+id/tv_1_amj" />
+
+            <TextView
+                android:id="@+id/tv_time_amj"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="18:20"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="@+id/tv_3_amj"
+                app:layout_constraintStart_toStartOf="@+id/tv_3_amj"
+                app:layout_constraintTop_toBottomOf="@+id/tv_3_amj" />
+
+            <android.support.constraint.Guideline
+                android:id="@+id/gl_h1_amj"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.2" />
+
+            <android.support.constraint.Guideline
+                android:id="@+id/gl_h2_amj"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.5" />
+
+            <android.support.constraint.Guideline
+                android:id="@+id/gl_h3_amj"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.8" />
+
+            <ImageView
+                android:id="@+id/iv_f_amj"
+                android:layout_width="0dp"
+                android:layout_height="70dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="32dp"
+                android:padding="20dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_type_amj"
+                app:srcCompat="@mipmap/win_logo" />
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rv_f_amj"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/iv_f_amj" />
+
+            <ImageView
+                android:id="@+id/iv_s_amj"
+                android:layout_width="0dp"
+                android:layout_height="70dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="16dp"
+                android:padding="20dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/rv_f_amj"
+                app:srcCompat="@mipmap/lose_logo" />
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rv_s_amj"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/iv_s_amj" />
+        </android.support.constraint.ConstraintLayout>
+    </LinearLayout>
+</android.support.v4.widget.NestedScrollView>

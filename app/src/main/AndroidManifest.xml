@@ -37,6 +37,9 @@
         <!--测试页面-->
         <activity android:name=".ui.test.TestActivity" />
 
+        <!--战绩详情页-->
+        <activity android:name=".fragment.user.jumpMatch.JumpMatchActivity" />
+
         <!--bugly热更新-->
         <activity
             android:name="com.tencent.bugly.beta.ui.BetaActivity"

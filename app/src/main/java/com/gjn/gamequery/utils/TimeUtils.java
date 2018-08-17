@@ -1,7 +1,5 @@
 package com.gjn.gamequery.utils;
 
-import android.util.Log;
-
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -64,5 +62,14 @@ public class TimeUtils {
             return TimeUtils.formatTime(TimeUtils.formatTime(time), format);
         }
         return time;
+    }
+
+    public static String sec2minsec(int time) {
+        int s = time % 60;
+        if (s > 9) {
+            return time / 60 + ":" + s;
+        } else {
+            return time / 60 + ":0" + s;
+        }
     }
 }

@@ -16,8 +16,12 @@ public class UserPresenter extends BasePresenter<IUserView, UserModel> {
     }
 
     public void getList(String name){
+        getList(name, 0);
+    }
+
+    public void getList(String name, int page){
         if (isAttached()) {
-            getModel().getList(name);
+            getModel().getList(name, page);
         }
     }
 
@@ -25,5 +29,9 @@ public class UserPresenter extends BasePresenter<IUserView, UserModel> {
         if (isAttached()) {
             getModel().getMatch(id, isCheck);
         }
+    }
+
+    public void getMatch(long id){
+        getMatch(id, true);
     }
 }

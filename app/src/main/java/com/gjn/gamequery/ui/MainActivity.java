@@ -5,6 +5,7 @@ import android.widget.TextView;
 
 import com.gjn.bottombarlibrary.BarTab;
 import com.gjn.bottombarlibrary.BottomBarView;
+import com.gjn.bottombarlibrary.IBarTab;
 import com.gjn.bottombarlibrary.OnBindBarDateListener;
 import com.gjn.gamequery.MyTinkerApplicationLike;
 import com.gjn.gamequery.R;
@@ -50,7 +51,7 @@ public class MainActivity extends BaseGQActivity {
     @Override
     protected void initView() {
 
-        List<BarTab> list = new ArrayList<>();
+        List<IBarTab> list = new ArrayList<>();
         BarTab barTab;
 
         barTab = new BarTab();
@@ -75,9 +76,10 @@ public class MainActivity extends BaseGQActivity {
 
         bbvMain.setOnBindBarDateListener(new OnBindBarDateListener() {
             @Override
-            public void onBindBarView(View view, int i, BarTab barTab) {
+            public void onBindBarView(View view, int i, IBarTab iBarTab) {
                 TextView textView = view.findViewById(R.id.tv_bar_item);
-                textView.setText(barTab.getTitle());
+                textView.setText(iBarTab.getTitle());
+
             }
         }).updataView(list);
     }

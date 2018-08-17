@@ -3,10 +3,10 @@ package com.gjn.gamequery.ui.splash;
 import android.support.annotation.NonNull;
 import android.widget.ImageView;
 
-import com.bumptech.glide.Glide;
 import com.gjn.gamequery.R;
 import com.gjn.gamequery.base.BaseGQActivity;
 import com.gjn.gamequery.ui.MainActivity;
+import com.gjn.gamequery.utils.GlideUtils;
 import com.gjn.permissionlibrary.PermissionCallBack;
 import com.gjn.permissionlibrary.PermissionUtils;
 
@@ -38,7 +38,7 @@ public class SplashActivity extends BaseGQActivity {
 
     @Override
     protected void initData() {
-        Glide.with(mActivity).load(IMG_URL).into(imageView);
+        GlideUtils.loadImg(IMG_URL, imageView);
     }
 
     @Override
