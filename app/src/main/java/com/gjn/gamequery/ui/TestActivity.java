@@ -1,7 +1,8 @@
-package com.gjn.gamequery.ui.test;
+package com.gjn.gamequery.ui;
 
 import com.gjn.gamequery.R;
 import com.gjn.gamequery.base.BaseGQActivity;
+import com.gjn.gamequery.ui.test.ITestView;
 import com.gjn.mvpannotationlibrary.utils.BindPresenters;
 
 /**

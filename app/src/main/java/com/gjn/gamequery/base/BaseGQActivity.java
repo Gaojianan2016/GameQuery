@@ -1,10 +1,12 @@
 package com.gjn.gamequery.base;
 
+import android.graphics.Color;
 import android.os.Bundle;
 
 import com.gjn.gamequery.ui.webview.WebActivity;
 import com.gjn.mvpannotationlibrary.base.BaseMvpActivity;
 import com.gjn.mvpannotationlibrary.base.BasePresenter;
+import com.gjn.statusbarlibrary.StatusBarUtils;
 
 import butterknife.ButterKnife;
 
@@ -19,6 +21,13 @@ public abstract class BaseGQActivity<P extends BasePresenter> extends BaseMvpAct
     protected void init() {
         super.init();
         ButterKnife.bind(this);
+
+        setStatusbar();
+    }
+
+    protected void setStatusbar() {
+        StatusBarUtils.statusBarMode(mActivity, true, Color.WHITE);
+        StatusBarUtils.setContentViewFitsSystemWindows(mActivity, true);
     }
 
     protected void openUrl(String url){

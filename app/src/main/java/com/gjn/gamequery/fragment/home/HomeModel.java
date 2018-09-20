@@ -1,13 +1,9 @@
 package com.gjn.gamequery.fragment.home;
 
-import android.util.Log;
-
 import com.gjn.gamequery.net.RetrofitManager;
 import com.gjn.gamequery.net.WanandroidUrl;
 import com.gjn.gamequery.net.response.WanBannerResponse;
 import com.gjn.gamequery.net.response.WanHomeResponse;
-import com.gjn.gamequery.ui.test.ITestView;
-import com.gjn.gamequery.utils.GsonUtils;
 import com.gjn.mvpannotationlibrary.base.BaseModel;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;

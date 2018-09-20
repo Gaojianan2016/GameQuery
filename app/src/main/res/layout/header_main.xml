@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/banner_indicator_bg"
+    android:orientation="vertical">
+
+    <com.gjn.statusbarlibrary.BarView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@android:color/holo_blue_light" />
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginBottom="16dp"
+            android:background="@android:color/holo_blue_light"
+            app:layout_constraintBottom_toTopOf="@+id/tv_history_hm"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/civ_img_hm"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="16dp"
+            android:src="@mipmap/default_img"
+            app:civ_border_color="@android:color/white"
+            app:civ_border_width="2dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_name_hm"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="点击登录"
+            android:textColor="@android:color/white"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="@+id/civ_img_hm"
+            app:layout_constraintTop_toBottomOf="@+id/civ_img_hm" />
+
+        <TextView
+            android:id="@+id/tv_history_hm"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="32dp"
+            android:background="@android:color/white"
+            android:drawableLeft="@android:drawable/ic_menu_save"
+            android:drawablePadding="20dp"
+            android:gravity="center_vertical"
+            android:padding="10dp"
+            android:text="历史记录"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_name_hm" />
+
+        <TextView
+            android:id="@+id/tv_collection_hm"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@android:color/white"
+            android:drawableLeft="@android:drawable/ic_menu_save"
+            android:drawablePadding="20dp"
+            android:gravity="center_vertical"
+            android:padding="10dp"
+            android:text="我的收藏"
+            app:layout_constraintEnd_toEndOf="@+id/tv_history_hm"
+            app:layout_constraintStart_toStartOf="@+id/tv_history_hm"
+            app:layout_constraintTop_toBottomOf="@+id/tv_history_hm" />
+
+        <TextView
+            android:id="@+id/tv_dark_hm"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:background="@android:color/white"
+            android:drawableLeft="@android:drawable/ic_menu_save"
+            android:drawablePadding="20dp"
+            android:gravity="center_vertical"
+            android:padding="10dp"
+            android:text="夜间模式"
+            app:layout_constraintEnd_toEndOf="@+id/tv_collection_hm"
+            app:layout_constraintStart_toStartOf="@+id/tv_collection_hm"
+            app:layout_constraintTop_toBottomOf="@+id/tv_collection_hm" />
+
+        <TextView
+            android:id="@+id/tv_setting_hm"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:layout_marginTop="16dp"
+            android:background="@android:color/white"
+            android:drawableLeft="@android:drawable/ic_menu_save"
+            android:drawablePadding="20dp"
+            android:gravity="center_vertical"
+            android:padding="10dp"
+            android:text="设置"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/tv_dark_hm"
+            app:layout_constraintStart_toStartOf="@+id/tv_dark_hm"
+            app:layout_constraintTop_toBottomOf="@+id/tv_dark_hm" />
+
+        <Switch
+            android:id="@+id/switch_dark_hm"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="10dp"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_dark_hm"
+            app:layout_constraintEnd_toEndOf="@+id/tv_dark_hm"
+            app:layout_constraintTop_toTopOf="@+id/tv_dark_hm" />
+
+    </android.support.constraint.ConstraintLayout>
+</LinearLayout>

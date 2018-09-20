@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="home_bg">#c7c5c5</color>
+    <color name="banner_indicator_bg">#88c7c5c5</color>
 </resources>

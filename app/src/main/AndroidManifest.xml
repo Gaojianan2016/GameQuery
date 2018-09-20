@@ -34,8 +34,11 @@
         <!--web网页-->
         <activity android:name=".ui.webview.WebActivity" />
 
+        <!--登录页面-->
+        <activity android:name=".ui.login.LoginActivity" />
+
         <!--测试页面-->
-        <activity android:name=".ui.test.TestActivity" />
+        <activity android:name=".ui.TestActivity" />
 
         <!--战绩详情页-->
         <activity android:name=".fragment.user.jumpMatch.JumpMatchActivity" />

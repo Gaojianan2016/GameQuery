@@ -13,8 +13,10 @@ public class Constants {
     public static String DEVICE = "Android";
     public static String VERSION = BuildConfig.VERSION_NAME;
 
-
     public final static String SP_JUMP_NAME = "SP_JUMP_NAME";
     public final static String SP_JUMP_NAMES = "SP_JUMP_NAMES";
     public final static String SP_JUMP_DEFAULT = "SP_JUMP_DEFAULT";
+
+    public final static String RX_OPEN_MENU = "RX_OPEN_MENU";
+
 }

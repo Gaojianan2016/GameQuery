@@ -27,6 +27,7 @@ public class HomeListAdapter extends BaseRecyclerAdapter<WanHomeData.DatasBean> 
         holder.setTextViewText(R.id.tv_title_ahl, item.getTitle());
         holder.setTextViewText(R.id.tv_author_ahl, item.getAuthor());
         holder.setTextViewText(R.id.tv_desc_ahl, item.getDesc());
-        holder.setTextViewText(R.id.tv_time_ahl, TimeUtils.formatTime(item.getPublishTime()));
+        holder.setTextViewText(R.id.tv_time_ahl, TimeUtils.overTime(item.getPublishTime()));
+
     }
 }

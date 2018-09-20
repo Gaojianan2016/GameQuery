@@ -1,9 +1,13 @@
 package com.gjn.gamequery.fragment.home;
 
 import android.content.Context;
+import android.graphics.Color;
+import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.gjn.bannerlibrary.Banner;
@@ -14,14 +18,19 @@ import com.gjn.gamequery.base.BaseGQFragment;
 import com.gjn.gamequery.base.BaseRecyclerAdapter;
 import com.gjn.gamequery.net.data.WanBannerData;
 import com.gjn.gamequery.net.data.WanHomeData;
+import com.gjn.gamequery.utils.Constants;
 import com.gjn.gamequery.utils.GlideUtils;
+import com.gjn.gamequery.utils.RxBus;
 import com.gjn.indicatorlibrary.Indicator;
 import com.gjn.mvpannotationlibrary.utils.BindPresenters;
+import com.gjn.toolbarlibrary.TitleBar;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.Unbinder;
 
 /**
  * HomeFragment
@@ -36,6 +45,8 @@ public class HomeFragment extends BaseGQFragment<HomePresenter> implements IHome
     RecyclerView rvListFh;
     @BindView(R.id.banner_fh)
     Banner banner;
+    @BindView(R.id.tb_fh)
+    TitleBar toolbar;
 
     private HomeListAdapter adapter;
 
@@ -46,6 +57,7 @@ public class HomeFragment extends BaseGQFragment<HomePresenter> implements IHome
 
     @Override
     protected void initView() {
+        setToolbar();
         setBanner();
 
         rvListFh.setLayoutManager(new LinearLayoutManager(mActivity));
@@ -53,16 +65,30 @@ public class HomeFragment extends BaseGQFragment<HomePresenter> implements IHome
         rvListFh.setAdapter(adapter);
     }
 
+    private void setToolbar() {
+        toolbar.setLeftOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                RxBus.postString(Constants.RX_OPEN_MENU);
+            }
+        });
+
+        toolbar.setLeftText("未登录!");
+    }
+
     private void setBanner() {
         List<WanBannerData> datas = new ArrayList<>();
         datas.add(new WanBannerData());
-        banner.setImageLoader(new Banner.BannerImageLoader() {
-            @Override
-            public void imageLoader(Context context, Object o, ImageView imageView) {
-                WanBannerData data = (WanBannerData) o;
-                GlideUtils.loadImg(data.getImagePath(), imageView);
-            }
-        }).setOnItemClickListener(new LoopViewPager.onClickListener() {
+
+        banner.getIndicatorLinearLayout().setBackgroundResource(R.color.banner_indicator_bg);
+        banner.setIndicatorLoader(Banner.defaultTextIndicator(0, Color.WHITE))
+                .setImageLoader(new Banner.BannerImageLoader() {
+                    @Override
+                    public void imageLoader(Context context, Object o, ImageView imageView) {
+                        WanBannerData data = (WanBannerData) o;
+                        GlideUtils.loadImg(data.getImagePath(), imageView);
+                    }
+                }).setOnItemClickListener(new LoopViewPager.onClickListener() {
             @Override
             public void onClick(View view, int i, Object o) {
                 WanBannerData data = (WanBannerData) o;
@@ -96,7 +122,7 @@ public class HomeFragment extends BaseGQFragment<HomePresenter> implements IHome
             titles.add(data.getTitle());
         }
         banner.updataView(datas, titles);
-        banner.setType(Indicator.TYPE_TEXT);
+        banner.setIndicatorType(Indicator.TYPE_TEXT);
     }
 
     @Override

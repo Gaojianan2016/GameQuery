@@ -1,5 +1,6 @@
-package com.gjn.gamequery.ui.test;
+package com.gjn.gamequery.ui;
 
+import com.gjn.gamequery.ui.test.ITestView;
 import com.gjn.mvpannotationlibrary.base.BasePresenter;
 
 /**

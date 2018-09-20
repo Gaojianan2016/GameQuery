@@ -83,6 +83,6 @@ public class SplashActivity extends BaseGQActivity {
             public void run() {
                 toNextActivity(MainActivity.class);
             }
-        }, 1000);
+        }, 500);
     }
 }
