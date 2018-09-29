@@ -1,13 +1,12 @@
 package com.gjn.gamequery.adapter;
 
 import android.content.Context;
-import android.graphics.Color;
 import android.view.View;
 
 import com.gjn.gamequery.R;
-import com.gjn.gamequery.base.BaseRecyclerAdapter;
-import com.gjn.gamequery.base.RecyclerViewHolder;
 import com.gjn.gamequery.utils.GlideUtils;
+import com.gjn.universaladapterlibrary.BaseRecyclerAdapter;
+import com.gjn.universaladapterlibrary.RecyclerViewHolder;
 
 import java.util.List;
 

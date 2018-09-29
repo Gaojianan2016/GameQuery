@@ -17,7 +17,6 @@ import com.gjn.gamequery.R;
 import com.gjn.gamequery.adapter.UserMatchListAdapter;
 import com.gjn.gamequery.adapter.UserNameListAdapter;
 import com.gjn.gamequery.base.BaseGQFragment;
-import com.gjn.gamequery.base.BaseRecyclerAdapter;
 import com.gjn.gamequery.fragment.user.jumpMatch.JumpMatchActivity;
 import com.gjn.gamequery.net.JumpUrl;
 import com.gjn.gamequery.net.data.JumpListData;
@@ -32,6 +31,7 @@ import com.gjn.gamequery.utils.TimeUtils;
 import com.gjn.mvpannotationlibrary.utils.BindPresenters;
 import com.gjn.popupviewlibrary.PopupWindowUtils;
 import com.gjn.toolbarlibrary.TitleBar;
+import com.gjn.universaladapterlibrary.BaseRecyclerAdapter;
 
 import java.text.ParseException;
 import java.util.ArrayList;

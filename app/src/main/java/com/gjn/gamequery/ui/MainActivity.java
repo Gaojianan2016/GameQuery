@@ -4,8 +4,6 @@ import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.view.View;
-import android.widget.CompoundButton;
-import android.widget.Switch;
 import android.widget.TextView;
 
 import com.gjn.bottombarlibrary.BarTab;
@@ -22,6 +20,7 @@ import com.gjn.gamequery.fragment.user.UserFragment;
 import com.gjn.gamequery.ui.login.LoginActivity;
 import com.gjn.gamequery.utils.Constants;
 import com.gjn.gamequery.utils.RxBus;
+import com.gjn.gamequery.utils.SharedPreferencesUtil;
 import com.gjn.statusbarlibrary.StatusBarUtils;
 
 import java.util.ArrayList;
@@ -31,7 +30,7 @@ import butterknife.BindView;
 import de.hdodenhof.circleimageview.CircleImageView;
 import io.reactivex.functions.Consumer;
 
-public class MainActivity extends BaseGQActivity {
+public class MainActivity extends BaseGQActivity implements View.OnClickListener {
 
     public static final String BAR_HOME = "首页";
     public static final String BAR_NEWS = "项目";
@@ -115,49 +114,12 @@ public class MainActivity extends BaseGQActivity {
         TextView history = header.findViewById(R.id.tv_history_hm);
         TextView collection = header.findViewById(R.id.tv_collection_hm);
         TextView setting = header.findViewById(R.id.tv_setting_hm);
-        Switch dark = header.findViewById(R.id.switch_dark_hm);
 
-        View.OnClickListener l = new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                switch (v.getId()) {
-                    case R.id.civ_img_hm:
-                    case R.id.tv_name_hm:
-                        showToast("登录");
-                        showNextActivity(LoginActivity.class);
-                        break;
-                    case R.id.tv_history_hm:
-                        showToast("历史");
-                        break;
-                    case R.id.tv_collection_hm:
-                        showToast("收藏");
-                        break;
-                    case R.id.tv_setting_hm:
-                        showToast("设置");
-                        break;
-                    default:
-                        break;
-                }
-                dlMain.closeDrawers();
-            }
-        };
-
-        img.setOnClickListener(l);
-        name.setOnClickListener(l);
-        history.setOnClickListener(l);
-        collection.setOnClickListener(l);
-        setting.setOnClickListener(l);
-
-        dark.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked) {
-                    showToast("开启夜间模式");
-                } else {
-                    showToast("关闭夜间模式");
-                }
-            }
-        });
+        img.setOnClickListener(this);
+        name.setOnClickListener(this);
+        history.setOnClickListener(this);
+        collection.setOnClickListener(this);
+        setting.setOnClickListener(this);
     }
 
     @Override
@@ -170,5 +132,28 @@ public class MainActivity extends BaseGQActivity {
                 }
             }
         });
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.civ_img_hm:
+            case R.id.tv_name_hm:
+                showToast("登录");
+                showNextActivity(LoginActivity.class);
+                break;
+            case R.id.tv_history_hm:
+                showToast("历史");
+                break;
+            case R.id.tv_collection_hm:
+                showToast("收藏");
+                break;
+            case R.id.tv_setting_hm:
+                showToast("设置");
+                break;
+            default:
+                break;
+        }
+        dlMain.closeDrawers();
     }
 }

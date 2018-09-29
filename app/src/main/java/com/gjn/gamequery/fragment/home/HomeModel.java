@@ -1,10 +1,13 @@
 package com.gjn.gamequery.fragment.home;
 
+import android.util.Log;
+
 import com.gjn.gamequery.net.RetrofitManager;
 import com.gjn.gamequery.net.WanandroidUrl;
 import com.gjn.gamequery.net.response.WanBannerResponse;
 import com.gjn.gamequery.net.response.WanHomeResponse;
 import com.gjn.mvpannotationlibrary.base.BaseModel;
+import com.google.gson.Gson;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.functions.Consumer;
@@ -18,6 +21,7 @@ import io.reactivex.schedulers.Schedulers;
 public class HomeModel extends BaseModel<IHomeView> {
 
     void getHomeList(int page){
+        getMvpView().showProgressUI(true);
         RetrofitManager.getInstance()
                 .url(WanandroidUrl.BASE)
                 .create(WanandroidUrl.class)
@@ -27,8 +31,9 @@ public class HomeModel extends BaseModel<IHomeView> {
                 .subscribe(new Consumer<WanHomeResponse>() {
                     @Override
                     public void accept(WanHomeResponse wanHomeResponse) throws Exception {
+                        getMvpView().showProgressUI(false);
                         if (wanHomeResponse != null) {
-                            getMvpView().setList(wanHomeResponse.getData().getDatas());
+                            getMvpView().setList(wanHomeResponse.getData().getDatas(), wanHomeResponse.getData().getPageCount());
                         }else {
                             getMvpView().fail();
                         }
@@ -36,6 +41,7 @@ public class HomeModel extends BaseModel<IHomeView> {
                 }, new Consumer<Throwable>() {
                     @Override
                     public void accept(Throwable throwable) throws Exception {
+                        getMvpView().showProgressUI(false);
                         getMvpView().error(throwable);
                     }
                 });

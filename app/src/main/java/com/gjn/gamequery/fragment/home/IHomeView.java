@@ -12,7 +12,7 @@ import java.util.List;
  */
 
 public interface IHomeView extends IMvpView {
-    void setList(List<WanHomeData.DatasBean> json);
+    void setList(List<WanHomeData.DatasBean> json, int pageCount);
 
     void fail();
 

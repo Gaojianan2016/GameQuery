@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="125dp"
+    android:layout_height="125dp">
+
+    <ImageView
+        android:id="@+id/pb_dialog_loading"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:src="@drawable/animation_loading"
+        android:background="@drawable/dialog_loading_background"
+        android:padding="30dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_dialog_loading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@android:color/white"
+        android:text="加载中..."
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/pb_dialog_loading"
+        app:layout_constraintStart_toStartOf="@+id/pb_dialog_loading"
+        app:layout_constraintTop_toBottomOf="@+id/pb_dialog_loading" />
+</android.support.constraint.ConstraintLayout>

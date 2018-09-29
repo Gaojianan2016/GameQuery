@@ -2,12 +2,10 @@ package com.gjn.gamequery.fragment.home;
 
 import android.content.Context;
 import android.graphics.Color;
-import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.LayoutInflater;
+import android.util.Log;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.gjn.bannerlibrary.Banner;
@@ -15,7 +13,6 @@ import com.gjn.bannerlibrary.LoopViewPager;
 import com.gjn.gamequery.R;
 import com.gjn.gamequery.adapter.HomeListAdapter;
 import com.gjn.gamequery.base.BaseGQFragment;
-import com.gjn.gamequery.base.BaseRecyclerAdapter;
 import com.gjn.gamequery.net.data.WanBannerData;
 import com.gjn.gamequery.net.data.WanHomeData;
 import com.gjn.gamequery.utils.Constants;
@@ -24,13 +21,12 @@ import com.gjn.gamequery.utils.RxBus;
 import com.gjn.indicatorlibrary.Indicator;
 import com.gjn.mvpannotationlibrary.utils.BindPresenters;
 import com.gjn.toolbarlibrary.TitleBar;
+import com.gjn.universaladapterlibrary.BaseRecyclerAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.Unbinder;
 
 /**
  * HomeFragment
@@ -47,6 +43,9 @@ public class HomeFragment extends BaseGQFragment<HomePresenter> implements IHome
     Banner banner;
     @BindView(R.id.tb_fh)
     TitleBar toolbar;
+
+    int page = 0;
+    private boolean isLoading = false;
 
     private HomeListAdapter adapter;
 
@@ -88,13 +87,14 @@ public class HomeFragment extends BaseGQFragment<HomePresenter> implements IHome
                         WanBannerData data = (WanBannerData) o;
                         GlideUtils.loadImg(data.getImagePath(), imageView);
                     }
-                }).setOnItemClickListener(new LoopViewPager.onClickListener() {
-            @Override
-            public void onClick(View view, int i, Object o) {
-                WanBannerData data = (WanBannerData) o;
-                openUrl(data.getUrl());
-            }
-        }).updataView(datas);
+                })
+                .setOnItemClickListener(new LoopViewPager.onClickListener() {
+                    @Override
+                    public void onClick(View view, int i, Object o) {
+                        WanBannerData data = (WanBannerData) o;
+                        openUrl(data.getUrl());
+                    }
+                }).updataView(datas);
     }
 
     @Override
@@ -108,11 +108,36 @@ public class HomeFragment extends BaseGQFragment<HomePresenter> implements IHome
                 openUrl(adapter.getItem(pos).getLink());
             }
         });
+
+        rvListFh.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+                LinearLayoutManager manager = (LinearLayoutManager) recyclerView.getLayoutManager();
+                int last = manager.findLastVisibleItemPosition();
+                int count = recyclerView.getAdapter().getItemCount();
+                int visi = recyclerView.getChildCount();
+                if ( count > visi && visi > 0 && last >= count - 1) {
+                    if (!isLoading) {
+                        page++;
+                        getPresenter().list(page);
+                    }
+                }
+            }
+
+            @Override
+            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+                if (dy > getResources().getDisplayMetrics().heightPixels * 1.5) {
+
+                }else {
+
+                }
+            }
+        });
     }
 
     @Override
-    public void setList(List<WanHomeData.DatasBean> json) {
-        adapter.setData(json);
+    public void setList(List<WanHomeData.DatasBean> json, int pageCount) {
+        adapter.add(json);
     }
 
     @Override
@@ -122,7 +147,18 @@ public class HomeFragment extends BaseGQFragment<HomePresenter> implements IHome
             titles.add(data.getTitle());
         }
         banner.updataView(datas, titles);
-        banner.setIndicatorType(Indicator.TYPE_TEXT);
+        banner.changeIndicatorType(Indicator.TYPE_TEXT);
+    }
+
+    @Override
+    public void showProgressUI(boolean isShow) {
+        isLoading = isShow;
+        adapter.setShowEnd(!isShow);
+        if (isShow) {
+            showLoadingDialog();
+        }else {
+            dismissDialog();
+        }
     }
 
     @Override

@@ -4,6 +4,7 @@ import android.app.Application;
 import android.content.Context;
 import android.content.Intent;
 import android.support.multidex.MultiDex;
+import android.support.v7.app.AppCompatDelegate;
 import android.util.Log;
 
 import com.gjn.gamequery.utils.GlideUtils;
@@ -38,6 +39,8 @@ public class MyTinkerApplicationLike extends DefaultApplicationLike {
 
         SharedPreferencesUtil.create(getApplication(), "GameQuery");
         GlideUtils.setRequests(getApplication());
+
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
 
 //        //是否自动检查补丁 默认true
 //        Beta.autoCheckUpgrade = false;

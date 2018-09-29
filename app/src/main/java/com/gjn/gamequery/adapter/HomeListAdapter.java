@@ -1,13 +1,14 @@
 package com.gjn.gamequery.adapter;
 
 import android.content.Context;
+import android.view.View;
+import android.widget.ProgressBar;
 
 import com.gjn.gamequery.R;
-import com.gjn.gamequery.base.BaseRecyclerAdapter;
-import com.gjn.gamequery.base.RecyclerViewHolder;
 import com.gjn.gamequery.net.data.WanHomeData;
-import com.gjn.gamequery.utils.StringUtils;
 import com.gjn.gamequery.utils.TimeUtils;
+import com.gjn.universaladapterlibrary.BaseRecyclerAdapter;
+import com.gjn.universaladapterlibrary.RecyclerViewHolder;
 
 import java.util.List;
 
@@ -18,8 +19,15 @@ import java.util.List;
 
 public class HomeListAdapter extends BaseRecyclerAdapter<WanHomeData.DatasBean> {
 
+    private boolean isShowEnd = true;
+
     public HomeListAdapter(Context ctx, List<WanHomeData.DatasBean> list) {
         super(ctx, R.layout.adapter_home_list, list);
+    }
+
+    public void setShowEnd(boolean showEnd) {
+        isShowEnd = showEnd;
+        notifyDataSetChanged();
     }
 
     @Override
@@ -29,5 +37,11 @@ public class HomeListAdapter extends BaseRecyclerAdapter<WanHomeData.DatasBean> 
         holder.setTextViewText(R.id.tv_desc_ahl, item.getDesc());
         holder.setTextViewText(R.id.tv_time_ahl, TimeUtils.overTime(item.getPublishTime()));
 
+        View bar = holder.getView(R.id.pb_ahl);
+        if (position == getItemCount() - 1 && isShowEnd) {
+            bar.setVisibility(View.VISIBLE);
+        }else {
+            bar.setVisibility(View.GONE);
+        }
     }
 }

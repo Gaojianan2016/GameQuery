@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/banner_indicator_bg"
     android:orientation="vertical">
 
     <com.gjn.statusbarlibrary.BarView
@@ -14,7 +13,7 @@
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent">
 
         <TextView
             android:layout_width="0dp"
@@ -81,45 +80,21 @@
             app:layout_constraintTop_toBottomOf="@+id/tv_history_hm" />
 
         <TextView
-            android:id="@+id/tv_dark_hm"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:background="@android:color/white"
-            android:drawableLeft="@android:drawable/ic_menu_save"
-            android:drawablePadding="20dp"
-            android:gravity="center_vertical"
-            android:padding="10dp"
-            android:text="夜间模式"
-            app:layout_constraintEnd_toEndOf="@+id/tv_collection_hm"
-            app:layout_constraintStart_toStartOf="@+id/tv_collection_hm"
-            app:layout_constraintTop_toBottomOf="@+id/tv_collection_hm" />
-
-        <TextView
             android:id="@+id/tv_setting_hm"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
             android:background="@android:color/white"
             android:drawableLeft="@android:drawable/ic_menu_save"
             android:drawablePadding="20dp"
             android:gravity="center_vertical"
             android:padding="10dp"
             android:text="设置"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@+id/tv_dark_hm"
-            app:layout_constraintStart_toStartOf="@+id/tv_dark_hm"
-            app:layout_constraintTop_toBottomOf="@+id/tv_dark_hm" />
-
-        <Switch
-            android:id="@+id/switch_dark_hm"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="10dp"
-            app:layout_constraintBottom_toBottomOf="@+id/tv_dark_hm"
-            app:layout_constraintEnd_toEndOf="@+id/tv_dark_hm"
-            app:layout_constraintTop_toTopOf="@+id/tv_dark_hm" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_collection_hm" />
 
     </android.support.constraint.ConstraintLayout>
 </LinearLayout>

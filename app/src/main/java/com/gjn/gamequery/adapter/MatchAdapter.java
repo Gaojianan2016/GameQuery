@@ -1,15 +1,12 @@
 package com.gjn.gamequery.adapter;
 
 import android.content.Context;
-import android.util.Log;
-
-import com.gjn.gamequery.BuildConfig;
 import com.gjn.gamequery.R;
-import com.gjn.gamequery.base.BaseRecyclerAdapter;
-import com.gjn.gamequery.base.RecyclerViewHolder;
 import com.gjn.gamequery.net.JumpUrl;
 import com.gjn.gamequery.net.data.JumpMatchData;
 import com.gjn.gamequery.utils.GlideUtils;
+import com.gjn.universaladapterlibrary.BaseRecyclerAdapter;
+import com.gjn.universaladapterlibrary.RecyclerViewHolder;
 
 import java.util.ArrayList;
 import java.util.List;
