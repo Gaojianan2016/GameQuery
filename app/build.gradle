@@ -62,7 +62,7 @@ dependencies {
     implementation 'com.github.Gaojianan2016:TabScrollBar:1.0.1'
     implementation 'com.github.Gaojianan2016:BottomBar:1.0.9'
     implementation 'com.github.Gaojianan2016:PermissionUtils:1.0.3'
-    implementation 'com.github.Gaojianan2016:MVPAnnotationUtils:1.0.1'
+    implementation 'com.github.Gaojianan2016:MVPAnnotationUtils:1.0.2'
     implementation 'com.github.Gaojianan2016:Banner:1.0.9'
     implementation 'com.github.Gaojianan2016:IndicatorLayout:1.0.9'
     implementation 'com.github.Gaojianan2016:ToolBar:1.1.2'

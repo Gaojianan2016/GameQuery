@@ -34,10 +34,13 @@
         <!--web网页-->
         <activity android:name=".ui.webview.WebActivity" />
 
-        <!--登录页面-->
+        <!--登录-->
         <activity android:name=".ui.login.LoginActivity" />
 
-        <!--测试页面-->
+        <!--注册-->
+        <activity android:name=".ui.register.RegisterActivity" />
+
+        <!--测试-->
         <activity android:name=".ui.TestActivity" />
 
         <!--战绩详情页-->

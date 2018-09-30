@@ -8,9 +8,11 @@ import com.gjn.gamequery.BuildConfig;
 import java.io.IOException;
 import java.util.Map;
 
+import okhttp3.FormBody;
 import okhttp3.Headers;
 import okhttp3.Interceptor;
 import okhttp3.Request;
+import okhttp3.RequestBody;
 import okhttp3.Response;
 
 /**
@@ -36,6 +38,7 @@ public class HeaderInterceptor implements Interceptor {
     @Override
     public Response intercept(@NonNull Chain chain) throws IOException {
         Headers headers;
+        RequestBody body;
         Request request = chain.request();
         if (onChangeHeader != null) {
             Map<String, String> heads = onChangeHeader.addRequestHeader();
@@ -50,26 +53,36 @@ public class HeaderInterceptor implements Interceptor {
             }
         }
         long startTime = System.nanoTime();
-        log("--> HTTP URL: " + request.url() + " TYPE: " + request.method());
+        log("START--> HTTP URL: " + request.url() + " TYPE: " + request.method());
         headers = request.headers();
         if (headers.size() > 0) {
-            log("--> HTTP REQUEST HEAD: ");
+            log("START--> HTTP REQUEST HEAD: ");
             for (int i = 0; i < headers.size(); i++) {
-                log("--> " + headers.name(i) + " = " + headers.value(i));
+                log("START--> " + headers.name(i) + " = " + headers.value(i));
+            }
+        }
+        body = request.body();
+        if (body != null) {
+            log("START--> HTTP BODY LENGTH: " + body.contentLength());
+            if (body instanceof FormBody) {
+                log("START--> HTTP REQUEST BODY: ");
+                for (int i = 0; i < ((FormBody) body).size(); i++) {
+                    log("START--> " + ((FormBody) body).encodedName(i) + "=" + ((FormBody) body).encodedValue(i));
+                }
             }
         }
         log("============ HTTP REQUEST END ============");
         Response response = chain.proceed(request);
         long endTime = System.nanoTime();
         if (isLinkTime) {
-            Log.d(TAG, String.format("--> %s : %.1fms", response.request().url(), (endTime - startTime) / 1e6d));
+            Log.d(TAG, String.format("END--> %s : %.1fms", response.request().url(), (endTime - startTime) / 1e6d));
         }
-        log("--> HTTP SUCCESS: " + response.code());
+        log("END--> HTTP SUCCESS: " + response.code());
         headers = response.headers();
         if (headers.size() > 0) {
-            log("--> HTTP RESPONSE HEAD: ");
+            log("END--> HTTP RESPONSE HEAD: ");
             for (int i = 0; i < headers.size(); i++) {
-                log("--> " + headers.name(i) + " = " + headers.value(i));
+                log("END--> " + headers.name(i) + " = " + headers.value(i));
             }
             if (onChangeHeader != null) {
                 onChangeHeader.getResponseHeader(String.valueOf(response.request().url()), headers);

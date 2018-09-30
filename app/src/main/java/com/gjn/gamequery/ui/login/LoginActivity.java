@@ -1,26 +1,19 @@
 package com.gjn.gamequery.ui.login;
 
-import android.os.Bundle;
 import android.support.design.widget.TextInputLayout;
-import android.text.Editable;
 import android.text.InputType;
-import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.gjn.gamequery.R;
 import com.gjn.gamequery.base.BaseGQActivity;
 import com.gjn.gamequery.net.RetrofitManager;
 import com.gjn.gamequery.net.WanandroidUrl;
-import com.gjn.gamequery.net.model.User;
 import com.gjn.gamequery.utils.SimpleTextWatcher;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.functions.Consumer;
@@ -82,8 +75,30 @@ public class LoginActivity extends BaseGQActivity {
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.btn_login:
-                showToast("登录成功");
-                finish();
+                String name = etName.getText().toString().trim();
+                String pwd = etPwd.getText().toString().trim();
+
+                RetrofitManager.getInstance()
+                        .url(WanandroidUrl.BASE)
+                        .create(WanandroidUrl.class)
+                        .login(name, pwd)
+                        .subscribeOn(Schedulers.io())
+                        .observeOn(AndroidSchedulers.mainThread())
+                        .subscribe(new Consumer<ResponseBody>() {
+                            @Override
+                            public void accept(ResponseBody responseBody) throws Exception {
+                                String str = responseBody.string();
+                                Log.e("-s-login", "str = " + str);
+                                showToast("登录成功");
+//                                finish();
+                            }
+                        }, new Consumer<Throwable>() {
+                            @Override
+                            public void accept(Throwable throwable) throws Exception {
+
+                                showToast("登录失败");
+                            }
+                        });
                 break;
             case R.id.tv_re:
                 showToast("注册");
@@ -97,7 +112,7 @@ public class LoginActivity extends BaseGQActivity {
                             @Override
                             public void accept(ResponseBody responseBody) throws Exception {
                                 String str = responseBody.string();
-                                Log.e("-s-", "str = " + str);
+                                Log.e("-s-register", "str = " + str);
                             }
                         }, new Consumer<Throwable>() {
                             @Override
