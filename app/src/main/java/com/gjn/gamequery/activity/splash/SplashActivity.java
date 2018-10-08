@@ -1,11 +1,11 @@
-package com.gjn.gamequery.ui.splash;
+package com.gjn.gamequery.activity.splash;
 
 import android.support.annotation.NonNull;
 import android.widget.ImageView;
 
 import com.gjn.gamequery.R;
 import com.gjn.gamequery.base.BaseGQActivity;
-import com.gjn.gamequery.ui.MainActivity;
+import com.gjn.gamequery.activity.MainActivity;
 import com.gjn.gamequery.utils.GlideUtils;
 import com.gjn.permissionlibrary.PermissionCallBack;
 import com.gjn.permissionlibrary.PermissionUtils;

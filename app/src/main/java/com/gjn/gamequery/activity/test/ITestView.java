@@ -1,4 +1,4 @@
-package com.gjn.gamequery.ui.test;
+package com.gjn.gamequery.activity.test;
 
 import com.gjn.mvpannotationlibrary.base.IMvpView;
 

@@ -41,7 +41,7 @@ public class HeaderInterceptor implements Interceptor {
         RequestBody body;
         Request request = chain.request();
         if (onChangeHeader != null) {
-            Map<String, String> heads = onChangeHeader.addRequestHeader();
+            Map<String, String> heads = onChangeHeader.addRequestHeader(String.valueOf(request.url()));
             if (heads != null && heads.size() > 0) {
                 Request.Builder builder = request.newBuilder()
                         .method(request.method(), request.body());
@@ -103,7 +103,7 @@ public class HeaderInterceptor implements Interceptor {
     }
 
     public interface OnChangeHeader {
-        Map<String, String> addRequestHeader();
+        Map<String, String> addRequestHeader(String url);
 
         void getResponseHeader(String url, Headers headers);
     }

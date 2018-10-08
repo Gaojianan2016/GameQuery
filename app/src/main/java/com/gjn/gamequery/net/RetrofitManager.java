@@ -1,11 +1,16 @@
 package com.gjn.gamequery.net;
 
+import com.gjn.gamequery.utils.LogUtils;
+
+import java.util.Map;
+
 import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
+import okhttp3.Headers;
+import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
-import okhttp3.ResponseBody;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -19,20 +24,21 @@ public class RetrofitManager {
     private static RetrofitManager retrofitManager;
     private static Retrofit retrofit;
     private static OkHttpClient okHttpClient;
-    private static HeaderInterceptor headerInterceptor;
+    private static Interceptor interceptor;
 
-    private RetrofitManager() {
+    private RetrofitManager(Interceptor it) {
+        interceptor = it;
         if (okHttpClient == null) {
             okHttpClient = createClient();
         }
     }
 
     public static OkHttpClient createClient() {
-        if (headerInterceptor == null) {
-            headerInterceptor = new HeaderInterceptor();
+        if (interceptor == null) {
+            interceptor = new HeaderInterceptor();
         }
         return new OkHttpClient.Builder()
-                .addInterceptor(headerInterceptor)
+                .addInterceptor(interceptor)
                 .build();
     }
 
@@ -40,45 +46,43 @@ public class RetrofitManager {
         if (retrofitManager == null) {
             synchronized (RetrofitManager.class) {
                 if (retrofitManager == null) {
-                    retrofitManager = new RetrofitManager();
+                    retrofitManager = new RetrofitManager(null);
                 }
             }
         }
         return retrofitManager;
     }
 
-    public static Retrofit getRetrofit() {
-        return retrofit;
+    public static RetrofitManager getInstance(Interceptor interceptor) {
+        if (retrofitManager == null) {
+            synchronized (RetrofitManager.class) {
+                if (retrofitManager == null) {
+                    retrofitManager = new RetrofitManager(interceptor);
+                }
+            }
+        }
+        return retrofitManager;
     }
 
     public static void setRetrofit(Retrofit r) {
         retrofit = r;
     }
 
-    public static OkHttpClient getOkHttpClient() {
-        getInstance();
-        return okHttpClient;
-    }
-
     public static void setOkHttpClient(OkHttpClient client) {
         okHttpClient = client;
-    }
-
-    public static void setHeaderInterceptor(HeaderInterceptor interceptor) {
-        headerInterceptor = interceptor;
     }
 
     public static <T> T create(String url, Class<T> service) {
         return getInstance().url(url).create(service);
     }
 
-    public static void link(Observable<ResponseBody> observable, final OnLinkListener onLinkListener) {
+    public static <T> void linkOnMainThread(Observable<T> observable, final OnLinkListener<T> onLinkListener) {
         observable.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Consumer<ResponseBody>() {
+                .subscribe(new Consumer<T>() {
                     @Override
-                    public void accept(ResponseBody responseBody) throws Exception {
-                        onLinkListener.success(responseBody);
+                    public void accept(T t) throws Exception {
+                        onLinkListener.success(t);
                     }
                 }, new Consumer<Throwable>() {
                     @Override
@@ -102,8 +106,8 @@ public class RetrofitManager {
         return retrofit.create(service);
     }
 
-    public interface OnLinkListener {
-        void success(ResponseBody responseBody) throws Exception;
+    public interface OnLinkListener<T> {
+        void success(T t) throws Exception;
 
         void fail(Throwable throwable);
     }

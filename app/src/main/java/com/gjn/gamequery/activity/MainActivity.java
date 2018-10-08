@@ -1,4 +1,4 @@
-package com.gjn.gamequery.ui;
+package com.gjn.gamequery.activity;
 
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -17,10 +17,9 @@ import com.gjn.gamequery.fragment.home.HomeFragment;
 import com.gjn.gamequery.fragment.news.NewsFragment;
 import com.gjn.gamequery.fragment.tool.ToolFragment;
 import com.gjn.gamequery.fragment.user.UserFragment;
-import com.gjn.gamequery.ui.login.LoginActivity;
+import com.gjn.gamequery.activity.login.LoginActivity;
 import com.gjn.gamequery.utils.Constants;
 import com.gjn.gamequery.utils.RxBus;
-import com.gjn.gamequery.utils.SharedPreferencesUtil;
 import com.gjn.statusbarlibrary.StatusBarUtils;
 
 import java.util.ArrayList;

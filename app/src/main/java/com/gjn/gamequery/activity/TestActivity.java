@@ -1,8 +1,8 @@
-package com.gjn.gamequery.ui;
+package com.gjn.gamequery.activity;
 
 import com.gjn.gamequery.R;
 import com.gjn.gamequery.base.BaseGQActivity;
-import com.gjn.gamequery.ui.test.ITestView;
+import com.gjn.gamequery.activity.test.ITestView;
 import com.gjn.mvpannotationlibrary.utils.BindPresenters;
 
 /**
@@ -10,7 +10,6 @@ import com.gjn.mvpannotationlibrary.utils.BindPresenters;
  * @time 2018/8/1 17:03
  */
 
-@BindPresenters({TestPresenter.class})
 public class TestActivity extends BaseGQActivity<TestPresenter> implements ITestView {
 
     @Override

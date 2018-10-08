@@ -2,9 +2,10 @@ package com.gjn.gamequery.net;
 
 import com.gjn.gamequery.net.response.WanBannerResponse;
 import com.gjn.gamequery.net.response.WanHomeResponse;
+import com.gjn.gamequery.net.response.WanLoginResponse;
+import com.gjn.gamequery.net.response.WanRegisterResponse;
 
 import io.reactivex.Observable;
-import okhttp3.ResponseBody;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
@@ -27,10 +28,10 @@ public interface WanandroidUrl {
 
     @POST("user/login")
     @FormUrlEncoded
-    Observable<ResponseBody> login(@Field("username") String username, @Field("password") String password);
+    Observable<WanLoginResponse> login(@Field("username") String username, @Field("password") String password);
 
     @POST("user/register")
     @FormUrlEncoded
-    Observable<ResponseBody> register(@Field("username") String username, @Field("password") String password,
-                                      @Field("repassword") String repassword);
+    Observable<WanRegisterResponse> register(@Field("username") String username, @Field("password") String password,
+                                             @Field("repassword") String repassword);
 }

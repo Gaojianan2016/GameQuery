@@ -1,4 +1,4 @@
-package com.gjn.gamequery.ui.register;
+package com.gjn.gamequery.activity.register;
 
 import com.gjn.gamequery.base.BaseGQActivity;
 
